@@ -1,5 +1,9 @@
+@font-face {
+    font-family: 'Montserrat-Semibold';
+    src: url('../src/Montserrat-Semibold.ttf') format('truetype');
+}
 h1{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat-Semibold';
     color: white;
     background-color: #141414;
     text-align: center;
