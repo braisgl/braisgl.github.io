@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/bootstrap.css" />
+    <link rel="icon" href="src/logo16.png" sizes="16x16" type="image/png" />
+    <link rel="icon" href="src/logo32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="src/logo64.png" sizes="64x64" type="image/png" />
+    <title>Daydream Sessions</title>
+  </head>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="../index.html"
+              >El proyecto <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="media.html">Video</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="contacto.html">Contacto</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <body>
+    <div class="container mt-5">
+      <h2 class="mb-4">Contáctanos</h2>
+      <form>
+        <div class="mb-3">
+          <label for="name" class="form-label">Nombre</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            placeholder="Tu nombre"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Correo electrónico</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="nombre@ejemplo.com"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="phone" class="form-label">Teléfono</label>
+          <input
+            type="tel"
+            class="form-control"
+            id="phone"
+            placeholder="Tu número de teléfono"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="message" class="form-label">Mensaje</label>
+          <textarea
+            class="form-control"
+            id="message"
+            rows="4"
+            placeholder="Escribe tu mensaje aquí"
+            required
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </form>
+    </div>
+  </body>
+  <footer>
+    
+  </footer>
+  <script src="../js/bootstrap.bundle.min.js"></script>
+</html>

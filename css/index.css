@@ -9,11 +9,22 @@ h1{
     text-align: center;
 }
 html{
-    margin: 10% 10%;
     height: 100%;
     background-color: #141414;
-    background-image: url('../src/LOGO\ NOBG.png');
+    /* background-image: url('../src/LOGO\ NOBG.png'); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+}
+header{
+    background-color: red;
+    width: 100%;
+}
+.logo{
+    width: 100%; /* Adjust to fit the container */
+    max-width: 600px; /* Optional: Set a maximum width */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Center the image if needed */
+    margin: 0 auto;
+    align-self: start;
 }
