@@ -2,29 +2,20 @@
     font-family: 'Montserrat-Semibold';
     src: url('../src/Montserrat-Semibold.ttf') format('truetype');
 }
-h1{
-    font-family: 'Montserrat-Semibold';
-    color: white;
-    background-color: #141414;
-    text-align: center;
-}
 html{
-    height: 100%;
-    background-color: #141414;
-    /* background-image: url('../src/LOGO\ NOBG.png'); */
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    font-family: 'Montserrat-Semibold';
+}
+body{
+    color: white;
 }
 header{
-    background-color: red;
     width: 100%;
+    background-color: #141414;
 }
-.logo{
-    width: 100%; /* Adjust to fit the container */
-    max-width: 600px; /* Optional: Set a maximum width */
-    height: auto; /* Maintain aspect ratio */
-    display: block; /* Center the image if needed */
-    margin: 0 auto;
-    align-self: start;
+.nav-text{
+    color: white;
+}
+.logoNav {
+  max-width: 10%; /* Ajusta este valor según lo que necesites */
+  height: auto;
 }
