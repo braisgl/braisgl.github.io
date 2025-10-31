@@ -29,11 +29,12 @@
     ...integratorCfg,
     emailjs: { ...defaultConfig.emailjs, ...(integratorCfg.emailjs || {}) },
   };
-  if (
-    integratorCfg.emailjs &&
-    (integratorCfg.emailjs.publicKey || integratorCfg.emailjs.serviceId || integratorCfg.emailjs.templateId)
-  ) {
-    config.method = integratorCfg.method || 'emailjs';
+  if (integratorCfg.emailjs) {
+    const hasClientKeys = !!(integratorCfg.emailjs.publicKey || integratorCfg.emailjs.serviceId || integratorCfg.emailjs.templateId);
+    const wantsProxy = !!(integratorCfg.emailjs.useProxy && integratorCfg.emailjs.apiBase);
+    if (hasClientKeys || wantsProxy) {
+      config.method = integratorCfg.method || 'emailjs';
+    }
   }
 
   function show(el) { el.classList.remove('d-none'); }
