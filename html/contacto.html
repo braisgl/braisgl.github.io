@@ -17,8 +17,9 @@
 
   <!-- Optional: EmailJS for direct email sending -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <!-- Optional config override (rename and include your real keys): ../js/config.emailjs.js -->
-  <script defer src="../js/config.emailjs.js"></script> 
+  <!-- Config por defecto + override local si existe -->
+  <script defer src="../js/config.emailjs.js"></script>
+  <script defer src="../js/config.emailjs.local.js"></script>
   <!-- Page logic -->
   <script defer src="../js/contacto.js"></script>
   </head>
@@ -113,18 +114,19 @@
 
               <!-- Formulario -->
               <form id="contactForm" class="needs-validation" novalidate>
-                <!-- Campo oculto para EmailJS (destino) -->
+                <!-- Campos ocultos para EmailJS -->
                 <input type="hidden" id="to_email" name="to_email" value="" />
+                <input type="hidden" id="sent_at" name="sent_at" value="" />
                 <div class="mb-3">
                   <label for="name" class="form-label">Nombre</label>
-                  <input type="text" class="form-control" id="name" name="name" placeholder="Tu nombre" required />
+                  <input type="text" class="form-control" id="name" name="from_name" placeholder="Tu nombre" required />
                   <div class="form-hint text-end">Obligatorio <span class="asterisk">*</span></div>
                   <div class="invalid-feedback">El nombre es obligatorio.</div>
                 </div>
 
                 <div class="mb-3">
                   <label for="email" class="form-label">Correo electrónico</label>
-                  <input type="email" class="form-control" id="email" name="email" placeholder="nombre@ejemplo.com" required />
+                  <input type="email" class="form-control" id="email" name="reply_to" placeholder="nombre@ejemplo.com" required />
                   <div class="form-hint text-end">Obligatorio <span class="asterisk">*</span></div>
                   <div class="invalid-feedback">Introduce un correo electrónico válido.</div>
                 </div>

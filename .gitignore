@@ -1,0 +1,3 @@
+# Local-only config overrides (do not commit secrets)
+js/config.youtube.local.js
+js/config.emailjs.local.js

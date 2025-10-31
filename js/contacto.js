@@ -14,7 +14,7 @@
   // Config por defecto (se puede sobreescribir con window.EMAILJS_CONFIG desde config.emailjs.js)
   const defaultConfig = {
     method: 'mailto', // 'mailto' | 'emailjs'
-    toEmail: 'daydreamssmusik@gmail.com',
+    toEmail: 'daydreamssmusic@gmail.com',
     emailjs: {
       publicKey: '', // p.ej. 'YOUR_PUBLIC_KEY'
       serviceId: '', // p.ej. 'service_xxx'
@@ -70,19 +70,39 @@
   }
 
   async function sendWithEmailJS(formEl) {
-    if (!window.emailjs) throw new Error('EmailJS no está disponible');
+    const { publicKey, serviceId, templateId, useProxy, apiBase } = config.emailjs;
 
-    const { publicKey, serviceId, templateId } = config.emailjs;
+    // Aseguramos que el destino y la fecha vayan en el formulario para que la plantilla pueda usarlos
+    const toEmailInput = formEl.querySelector('#to_email');
+    if (toEmailInput) toEmailInput.value = config.toEmail || '';
+    const sentAtInput = formEl.querySelector('#sent_at');
+    if (sentAtInput) {
+      const now = new Date();
+      const pad = (n) => String(n).padStart(2, '0');
+      const formatted = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}`;
+      sentAtInput.value = formatted;
+    }
+
+    // Opción A: Proxy/Worker (no expone claves en cliente)
+    if (useProxy && apiBase) {
+      const fd = new FormData(formEl);
+      const res = await fetch(`${apiBase.replace(/\/$/, '')}/email`, {
+        method: 'POST',
+        body: fd,
+      });
+      if (!res.ok) {
+        const txt = await res.text().catch(() => '');
+        throw new Error(`Fallo proxy email (${res.status}): ${txt}`);
+      }
+      return true;
+    }
+
+    // Opción B: Cliente EmailJS (requiere claves en cliente)
+    if (!window.emailjs) throw new Error('EmailJS no está disponible');
     if (!publicKey || !serviceId || !templateId) {
       throw new Error('Faltan credenciales de EmailJS en la configuración');
     }
-
-    // Aseguramos que el destino vaya en el formulario para que la plantilla pueda usarlo
-    const toEmailInput = formEl.querySelector('#to_email');
-    if (toEmailInput) toEmailInput.value = config.toEmail || '';
-
     emailjs.init({ publicKey });
-    // Envío básico sin adjuntos
     return emailjs.sendForm(serviceId, templateId, formEl);
   }
 
