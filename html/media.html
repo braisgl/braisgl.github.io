@@ -144,9 +144,21 @@
         <div class="small mt-1">&copy; Daydream Sessions. Todos los derechos reservados.</div>
       </div>
     </footer>
-  <!-- YouTube API config con apiKey + channelId (repo) + overrides locales (si existen) -->
-  <script defer src="../js/config.youtube.js"></script>
-  <script defer src="../js/config.youtube.local.js"></script>
+    <!-- YouTube API config con apiKey + channelId (repo) -->
+    <script defer src="../js/config.youtube.js"></script>
+    <!-- Cargar override local solo en entorno local para evitar 404 en Pages -->
+    <script>
+      (function(){
+        var host = location.hostname;
+        var isLocal = host === 'localhost' || host === '127.0.0.1' || location.protocol === 'file:';
+        if (isLocal) {
+          var s = document.createElement('script');
+          s.src = '../js/config.youtube.local.js';
+          s.defer = true;
+          document.currentScript.parentNode.insertBefore(s, document.currentScript.nextSibling);
+        }
+      })();
+    </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script defer src="../js/sticky-header.js"></script>
     <script defer src="../js/media.js"></script>

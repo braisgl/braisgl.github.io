@@ -17,9 +17,21 @@
 
   <!-- Optional: EmailJS for direct email sending -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <!-- Config por defecto + override local si existe -->
+  <!-- Config por defecto -->
   <script defer src="../js/config.emailjs.js"></script>
-  <script defer src="../js/config.emailjs.local.js"></script>
+  <!-- Cargar override local solo en entorno local para evitar 404 en Pages -->
+  <script>
+    (function(){
+      var host = location.hostname;
+      var isLocal = host === 'localhost' || host === '127.0.0.1' || location.protocol === 'file:';
+      if (isLocal) {
+        var s = document.createElement('script');
+        s.src = '../js/config.emailjs.local.js';
+        s.defer = true;
+        document.currentScript.parentNode.insertBefore(s, document.currentScript.nextSibling);
+      }
+    })();
+  </script>
   <!-- Page logic -->
   <script defer src="../js/contacto.js"></script>
   </head>

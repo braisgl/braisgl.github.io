@@ -1,6 +1,7 @@
 @font-face {
     font-family: 'Montserrat-Semibold';
-    src: url('../src/Montserrat-Semibold.ttf') format('truetype');
+    /* Atención: GitHub Pages es case-sensitive. El archivo real es Montserrat-SemiBold.ttf */
+    src: url('../src/Montserrat-SemiBold.ttf') format('truetype');
 }
 html{
     font-family: 'Montserrat-Semibold', sans-serif;
