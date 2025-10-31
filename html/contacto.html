@@ -3,89 +3,197 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/index.css" />
+    <meta name="description" content="Formulario de contacto de Daydream Sessions" />
+    <title>Contacto | Daydream Sessions</title>
+
+    <!-- CSS -->
     <link rel="stylesheet" href="../css/bootstrap.css" />
-    <link rel="icon" href="src/logo16.png" sizes="16x16" type="image/png" />
-    <link rel="icon" href="src/logo32.png" sizes="32x32" type="image/png" />
-    <link rel="icon" href="src/logo64.png" sizes="64x64" type="image/png" />
-    <title>Daydream Sessions</title>
+    <link rel="stylesheet" href="../css/index.css" />
+
+    <!-- Favicons -->
+    <link rel="icon" href="../src/logo16.png" sizes="16x16" type="image/png" />
+    <link rel="icon" href="../src/logo32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="../src/logo64.png" sizes="64x64" type="image/png" />
+
+  <!-- Optional: EmailJS for direct email sending -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <!-- Optional config override (rename and include your real keys): ../js/config.emailjs.js -->
+  <script defer src="../js/config.emailjs.js"></script> 
+  <!-- Page logic -->
+  <script defer src="../js/contacto.js"></script>
   </head>
-  <header>
-    <div class="row">
-    <img src="../src/logo_completo_horizontal_nobg.png" alt="logoNav" class="logoNav col-6" />
-    <nav class="navbar navbar-expand-lg navbar-light col-6">
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item col-4">
-            <a class="nav-link" href="../index.html">
-              <span class="nav-text">El proyecto</span>
-              <span class="sr-only">(current)</span>
-              </a>
-          </li>
-          <li class="nav-item col-4">
-            <a class="nav-link" href="media.html">
-              <span class="nav-text">Video</span>
-            </a>
-          </li>
-          <li class="nav-item active col-4">
-            <a class="nav-link" href="contacto.html">
-              <h3 class="nav-text">Contacto</h3>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    </div>
-  </header>
   <body>
-    <div class="container mt-5">
-      <h2 class="mb-4">Contáctanos</h2>
-      <form>
-        <div class="mb-3">
-          <label for="name" class="form-label">Nombre</label>
-          <input
-            type="text"
-            class="form-control"
-            id="name"
-            placeholder="Tu nombre"
-            required
-          />
+    <header>
+      <div class="container">
+        <div class="row align-items-center py-3">
+          <div class="col-6">
+            <img src="../src/logo_completo_horizontal_nobg.png" alt="Daydream Sessions" class="logoNav" />
+          </div>
+          <div class="col-6">
+            <nav class="navbar navbar-expand navbar-dark">
+              <button class="navbar-toggler ms-auto" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="true" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse justify-content-md-between" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../index.html"><span class="nav-text">El proyecto</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="media.html"><span class="nav-text">Video</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="contacto.html"><span class="nav-text">Contacto</span></a>
+                  </li>
+                </ul>
+                <div class="navbar-extra d-none d-md-flex align-items-center ml-3">
+                  <div class="social-icons">
+                    <a href="https://www.youtube.com/@daydreamsessions" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="2" y="6" width="20" height="12" rx="3" ry="3"></rect>
+                        <path d="M10 8l6 4-6 4V8z"></path>
+                      </svg>
+                    </a>
+                    <a href="https://daydreamsessions.bandcamp.com/" target="_blank" rel="noopener" aria-label="Bandcamp" title="Bandcamp">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <polygon points="4,6 18,6 14,18 0,18"></polygon>
+                      </svg>
+                    </a>
+                    <a href="https://open.spotify.com/playlist/2B3Dz8tAwPMGMLA4QkN8Lq?si=e5c06789f9bf4095" target="_blank" rel="noopener" aria-label="Spotify" title="Spotify">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M7 9c3-1 7-.5 10 1"></path>
+                        <path d="M7 12.5c3-1 6-.5 8.5 1"></path>
+                        <path d="M7 16c2.5-1 5-.5 7 .5"></path>
+                      </svg>
+                    </a>
+                    <a href="https://www.instagram.com/daydreamsessions/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <circle cx="17" cy="7" r="1.5"></circle>
+                      </svg>
+                    </a>
+                  </div>
+                  <a class="btn btn-outline-light btn-sm ml-3 d-inline-flex align-items-center" href="../src/DOSSIER%20DAYDREAM%20SESSIONS.pdf" download>
+                    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" class="mr-1">
+                      <rect x="4" y="2" width="14" height="20" rx="2"></rect>
+                      <path d="M8 6h6M8 10h6M8 14h3"></path>
+                    </svg>
+                    Dossier
+                  </a>
+                </div>
+              </div>
+            </nav>
+          </div>
         </div>
-        <div class="mb-3">
-          <label for="email" class="form-label">Correo electrónico</label>
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            placeholder="nombre@ejemplo.com"
-            required
-          />
+      </div>
+    </header>
+
+    <!-- Hero con foto de Nosotros, sin márgenes -->
+    <section class="media-hero-container">
+      <div class="media-hero media-hero--nosotros">
+        <div class="media-hero-label">CONTACTO</div>
+      </div>
+    </section>
+
+    <main>
+      <section class="py-5 contact-first-section">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-12 col-lg-8 col-xl-6 contact-panel">
+
+              <!-- Alerts -->
+              <div id="formAlertSuccess" class="alert alert-success d-none" role="alert">
+                ¡Gracias! Tu mensaje ha sido enviado. Nos pondremos en contacto contigo lo antes posible.
+              </div>
+              <div id="formAlertError" class="alert alert-danger d-none" role="alert">
+                Ha ocurrido un problema al preparar el envío. Revisa los datos e inténtalo de nuevo.
+              </div>
+
+              <!-- Formulario -->
+              <form id="contactForm" class="needs-validation" novalidate>
+                <!-- Campo oculto para EmailJS (destino) -->
+                <input type="hidden" id="to_email" name="to_email" value="" />
+                <div class="mb-3">
+                  <label for="name" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="name" name="name" placeholder="Tu nombre" required />
+                  <div class="form-hint text-end">Obligatorio <span class="asterisk">*</span></div>
+                  <div class="invalid-feedback">El nombre es obligatorio.</div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="email" class="form-label">Correo electrónico</label>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="nombre@ejemplo.com" required />
+                  <div class="form-hint text-end">Obligatorio <span class="asterisk">*</span></div>
+                  <div class="invalid-feedback">Introduce un correo electrónico válido.</div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="phone" class="form-label">Teléfono</label>
+                  <input type="tel" class="form-control" id="phone" name="phone" placeholder="Tu número de teléfono" />
+                </div>
+
+                
+
+                <div class="mb-4">
+                  <label for="message" class="form-label">Mensaje</label>
+                  <textarea class="form-control" id="message" name="message" rows="5" placeholder="Escribe tu mensaje aquí" required></textarea>
+                  <div class="form-hint text-end">Obligatorio <span class="asterisk">*</span></div>
+                  <div class="invalid-feedback">El mensaje es obligatorio.</div>
+                </div>
+
+                <div class="d-grid gap-2 d-sm-flex align-items-center">
+                  <button id="submitBtn" type="submit" class="btn btn-primary d-inline-flex align-items-center">
+                    <span class="spinner-border spinner-border-sm me-2 d-none" role="status" aria-hidden="true" id="submitSpinner"></span>
+                    Enviar
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-        <div class="mb-3">
-          <label for="phone" class="form-label">Teléfono</label>
-          <input
-            type="tel"
-            class="form-control"
-            id="phone"
-            placeholder="Tu número de teléfono"
-          />
+      </section>
+    </main>
+
+    <footer class="site-footer py-4 mt-5">
+      <div class="container text-center">
+        <div class="social-icons mb-2">
+          <a href="https://www.youtube.com/@daydreamsessions" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2" y="6" width="20" height="12" rx="3" ry="3" />
+              <path d="M10 8l6 4-6 4V8z" />
+            </svg>
+          </a>
+          <a href="https://daydreamsessions.bandcamp.com/" target="_blank" rel="noopener" aria-label="Bandcamp" title="Bandcamp">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <polygon points="4,6 18,6 14,18 0,18" />
+            </svg>
+          </a>
+          <a href="https://open.spotify.com/playlist/2B3Dz8tAwPMGMLA4QkN8Lq?si=e5c06789f9bf4095" target="_blank" rel="noopener" aria-label="Spotify" title="Spotify">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M7 9c3-1 7-.5 10 1" />
+              <path d="M7 12.5c3-1 6-.5 8.5 1" />
+              <path d="M7 16c2.5-1 5-.5 7 .5" />
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/daydreamsessions/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17" cy="7" r="1.5" />
+            </svg>
+          </a>
         </div>
-        <div class="mb-3">
-          <label for="message" class="form-label">Mensaje</label>
-          <textarea
-            class="form-control"
-            id="message"
-            rows="4"
-            placeholder="Escribe tu mensaje aquí"
-            required
-          ></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Enviar</button>
-      </form>
-    </div>
+        <div class="small">Contacto: <a href="mailto:daydreamssmusic@gmail.com">daydreamssmusic@gmail.com</a></div>
+        <div class="small mt-1">&copy; Daydream Sessions. Todos los derechos reservados.</div>
+      </div>
+    </footer>
+
+    <!-- JS -->
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script defer src="../js/sticky-header.js"></script>
+      <script src="../js/bootstrap.bundle.min.js"></script>
   </body>
-  <footer>
-    
-  </footer>
-  <script src="../js/bootstrap.bundle.min.js"></script>
 </html>

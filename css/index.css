@@ -3,19 +3,226 @@
     src: url('../src/Montserrat-Semibold.ttf') format('truetype');
 }
 html{
-    font-family: 'Montserrat-Semibold';
+    font-family: 'Montserrat-Semibold', sans-serif;
 }
 body{
     color: white;
 }
+/* Sticky footer layout */
+html, body { height: 100%; }
+body { display: flex; flex-direction: column; min-height: 100vh; }
+main { flex: 1 0 auto; }
 header{
     width: 100%;
     background-color: #141414;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1040; /* por encima de contenido/hero */
 }
 .nav-text{
     color: white;
 }
-.logoNav {
-  max-width: 10%; /* Ajusta este valor según lo que necesites */
-  height: auto;
+/* Contact page background and panel */
+.contact-page {
+    background: url('../src/nosotros.jpg') center center / cover no-repeat fixed;
 }
+.contact-panel {
+    background: rgba(255,255,255,0.9);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    color: #141414;
+}
+.contact-panel h1,
+.contact-panel p,
+.contact-panel label { color: #141414; }
+.logoNav {
+    /* Ocupa todo el ancho del bloque izquierdo (col-*) */
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+
+    /* Centrado dentro del bloque */
+    display: block;
+    margin: 0 auto;
+
+        /* Sin margen interior */
+    padding: 0;
+
+    /* Mantener proporción sin deformar y limitar altura para reducir la barra */
+            max-height: 85px; /* -15% altura navbar */
+    object-fit: contain;
+    object-position: center;
+}
+
+/* Formularios - colores legibles en fondo claro */
+.form-label { color: #212529; } /* Anula el color blanco heredado del body */
+.form-hint {
+    margin-top: 0.25rem;
+    font-size: 0.875rem; /* ~14px */
+    color: #6c757d; /* bootstrap secondary text */
+}
+.form-hint .asterisk { color: #dc3545; }
+
+/* Navbar - el link activo un 15% más grande en todas las páginas */
+/* Todas las opciones +25% y sin salto de línea */
+.navbar .nav-link { font-size: 1.25em; white-space: nowrap; }
+/* Activa además en negrita */
+.navbar .nav-link.active,
+.navbar .nav-link[aria-current="page"],
+.navbar .nav-item.active > .nav-link { font-weight: 600; }
+
+/* Distribución equitativa y separación del 10% entre opciones en pantallas md+ */
+@media (min-width: 768px) {
+    .navbar .navbar-nav {
+        display: flex;
+        gap: 3%; /* ahorrar más ancho para evitar saltos */
+        flex: 1 1 auto; /* el menú ocupa el espacio disponible */
+        align-items: center; /* alinear verticalmente las opciones */
+    }
+    .navbar .navbar-nav .nav-item { flex: 1 1 0; display: flex; align-items: center; }
+    .navbar .navbar-nav .nav-link { text-align: center; display: inline-flex; align-items: center; }
+}
+
+/* Bloque derecho en header: RRSS + Dossier alineados a la derecha y mismo ancho que menú */
+header .navbar-extra { display: flex; align-items: center; justify-content: flex-end; gap: 0.75rem; margin-left: auto; flex: 0 0 auto; }
+/* Separación mínima entre el último item del menú y el primer icono */
+header .navbar-extra { padding-left: 1rem; }
+
+/* Iconos en header blancos; en hover, más suave */
+header .social-icons a,
+header .social-icons a:visited { color: #ffffff !important; }
+header .social-icons a:hover { color: #cccccc !important; }
+/* Alinear verticalmente los iconos con el texto del menú */
+header .social-icons { align-items: center; }
+header .social-icons a { display: inline-flex; align-items: center; line-height: 1; }
+header .social-icons svg { display: block; }
+/* Asegurar contornos sin relleno en header, incl. botón Dossier */
+header .social-icons svg,
+header .navbar-extra .btn-outline-light svg { width: 1.1rem; height: 1.1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+/* Espaciado del icono PDF dentro del botón */
+header .navbar-extra .btn-outline-light svg { margin-right: 0.35rem; }
+
+/* Contact hero override: aumentar altura y centrar rostros */
+.media-hero.media-hero--nosotros {
+    height: 40vh; /* aún más alto para mostrar mejor los rostros */
+    max-height: 520px;
+    background-position: 50% 40%;
+}
+
+/* Contacto: adelantar el formulario hacia arriba (sobreponiéndose parcialmente al hero) */
+.contact-first-section { margin-top: -32px; }
+@media (min-width: 992px) { .contact-first-section { margin-top: -48px; } }
+
+/* Video page: fondo negro en el bloque del reproductor y textos claros */
+.active-video-section { background-color: #141414; }
+.active-video-section h1, .active-video-section .h2, .active-video-section p { color: #fff; }
+
+/* Video list: tarjetas sin fondo, títulos en #141414 y margen exterior del 10% */
+.video-list-section .card {
+    background: transparent !important;
+    border: none !important;
+    margin: 2% 10%; /* vertical reducido, horizontal 10% */
+    border-radius: 0; /* sin redondeo en el contenedor */
+    overflow: visible; /* no recorta, solo la miniatura tendrá esquinas */
+    box-shadow: none !important; /* sin borde visible alrededor del contenedor */
+}
+.video-list-section .card-img-top {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0.75rem; /* redondeo solo en la miniatura */
+}
+
+/* Media hero between navbar and main panel */
+.media-hero-container { display: flex; justify-content: center; margin: 0; padding: 0; }
+.media-hero--nosotros { background-image: url('../src/nosotros.jpg'); }
+.media-hero {
+    width: 100%;
+    height: 24vh; /* -10% adicional respecto a 27vh */
+    max-height: 294px; /* -10% adicional respecto a 326px */
+    background-image: url('../src/santiago.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center 205%; /* bajar 15% adicional */
+    background-attachment: fixed; /* la foto permanece fija; el resto de la página se desplaza */
+    position: relative;
+    overflow: hidden;
+}
+
+    /* Forzar en Contacto que la imagen del hero sea 'nosotros.jpg' (prioridad > .media-hero) */
+    .media-hero.media-hero--nosotros {
+        background-image: url('../src/nosotros.jpg');
+        /* centrado aproximado sobre los rostros (subimos 10%) */
+        background-position: 50% 48%;
+    }
+    /* Recorte superior adicional del 20% (25% -> 45%) para Contacto */
+    .media-hero--nosotros {
+        background-position: center 120%; /* bajar otro tanto adicional */
+    }
+/* Full width on all breakpoints */
+.media-hero .media-hero-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Montserrat-Semibold', sans-serif;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.15em;
+    font-size: clamp(2rem, 8vw, 6rem);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+.video-list-section .card-body { background: transparent !important; }
+.video-list-section .card-title { color: #141414 !important; }
+
+/* Variante de contacto: recorte superior del 25% */
+.media-hero--nosotros {
+    background-position: center 25%;
+}
+
+/* Reducir la altura general de la barra (anula utilidades bootstrap py-3) */
+header .row.align-items-center.py-3 { padding-top: 0.85rem !important; padding-bottom: 0.85rem !important; }
+
+/* Móvil: mostrar menú siempre debajo del logo, distribución equitativa y separación */
+@media (max-width: 767.98px) {
+    /* Ocultar el toggler y mantener abierto el collapse */
+    .navbar .navbar-toggler { display: none; }
+    #navbarNavDropdown { display: block !important; height: auto !important; visibility: visible !important; }
+
+    .navbar .navbar-nav {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: nowrap; /* todas en una fila */
+        gap: 4%; /* separación menor para que quepan */
+    }
+    .navbar .navbar-nav .nav-item { flex: 1 1 0; }
+    .navbar .navbar-nav .nav-link {
+        text-align: center;
+        padding: 0.5rem 0;
+        white-space: nowrap; /* evita salto de línea */
+        overflow: hidden;
+        text-overflow: ellipsis; /* recorte elegante si no cabe */
+        font-size: 1.1em; /* ligeramente menor para asegurar una fila en pantallas estrechas */
+    }
+}
+
+    /* Reafirmar override del hero de Contacto al final del archivo para evitar reglas anteriores */
+    .media-hero.media-hero--nosotros {
+        height: 40vh;
+        max-height: 520px;
+        background-position: 50% 40%;
+    }
+
+/* Footer */
+footer.site-footer {
+    background-color: #141414;
+    color: #ffffff;
+}
+footer.site-footer a { color: #ffffff; text-decoration: none; }
+footer.site-footer a:hover { color: #cccccc; text-decoration: none; }
+.social-icons { display: flex; gap: 1rem; align-items: center; justify-content: center; }
+.social-icons a { display: inline-flex; width: 28px; height: 28px; }
+.social-icons svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
