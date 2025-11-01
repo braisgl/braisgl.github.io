@@ -171,9 +171,19 @@ header .navbar-extra .btn-outline-light svg { margin-right: 0.35rem; }
     --hero-image: url('../src/todos.jpg');
     /* anulamos la imagen por defecto del hero */
     background-image: none;
-    /* mayor altura para mostrar la foto completa sin recorte */
-    height: 30vh;
-    max-height: 380px;
+    /* +20% de altura para aumentar el tamaño de la foto sin recortar */
+    height: 36vh;
+    max-height: 456px;
+}
+
+/* Variante aniversario para la home (blanco y negro) */
+.media-hero--aniversario {
+    /* Imagen base para esta variante */
+    --hero-image: url('../src/aniversario2.jpg');
+    background-image: none;
+    /* mismo alto que el hero de Contacto */
+    height: 40vh;
+    max-height: 520px;
 }
 
 /* Capa de fondo: ocupa todo, hace cover, está más opaca y con blur para rellenar los lados */
@@ -184,12 +194,60 @@ header .navbar-extra .btn-outline-light svg { margin-right: 0.35rem; }
     background-image: var(--hero-image);
     background-size: cover;
     background-position: center center;
+    background-attachment: fixed;
     filter: blur(6px);
     transform: scale(1.06); /* evita bordes duros tras el blur */
     opacity: 0.75; /* más opaca que la imagen central */
     will-change: transform;
     z-index: 0;
 }
+
+/* Fondo difuminado en B/N para aniversario */
+.media-hero--aniversario::before {
+    content: "";
+    position: absolute;
+    /* expandimos para evitar bordes tras el blur */
+    inset: -12px;
+    background-image: var(--hero-image);
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    filter: grayscale(100%) blur(6px);
+    opacity: 0.75;
+    z-index: 0;
+}
+
+/* Capa central controlada por JS para simular fixed (ocupa 3/5, se recorta dentro del hero) */
+.media-hero--aniversario .media-hero__center {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 60%;
+    height: 100%;
+    transform: translate(-50%, 0);
+    background-image: var(--hero-image);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 100%;
+    filter: grayscale(100%);
+    z-index: 1;
+    pointer-events: none;
+    will-change: background-position;
+}
+
+/* Central image al 60% del ancho en el hero aniversario */
+.media-hero--aniversario .media-hero__img {
+    width: 60%;
+}
+
+/* Títulos con subrayado bajo el texto, extendiéndose hacia la foto */
+.section-heading { position: relative; padding-bottom: 0.5rem; }
+.section-heading h2 { margin: 0; }
+.section-heading::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0;
+    height: 2px; border-radius: 1px; background: rgba(20,20,20,0.25);
+}
+.section-heading--right { text-align: right; }
 
 /* Capa central: mantiene la foto completa (contain) centrada */
 .media-hero__image {
@@ -212,8 +270,14 @@ header .navbar-extra .btn-outline-light svg { margin-right: 0.35rem; }
     z-index: 1;
     display: block;
     height: 100%;
-    width: auto;
+    /* Foto principal ocupa la mitad del ancho (dos cuartas partes) */
+    width: 50%;
+    max-width: 900px; /* evita crecimientos excesivos en pantallas muy anchas */
     margin: 0 auto; /* centra horizontalmente */
+    object-fit: cover; /* recorta proporcionalmente por arriba/abajo */
+    object-position: 50% 45%; /* centra sobre las personas */
+    filter: grayscale(100%);
+    transform-origin: center center; /* estabiliza la escala en el centro */
 }
 
 /* Asegura que el rótulo quede por encima de las capas */

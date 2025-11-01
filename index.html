@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Daydream Sessions - El proyecto" />
-    <title>El proyecto | Daydream Sessions</title>
+    <title>Nosotros | Daydream Sessions</title>
 
     <!-- CSS -->
   <!-- Bootstrap 4.4.1 (CDN, minified) -->
@@ -22,7 +22,9 @@
         <div class="row align-items-center py-3 header-grid">
           <!-- Izquierda: logo -->
           <div class="col-auto header-left">
-            <img src="src/logo_completo_horizontal_nobg.png" alt="Daydream Sessions" class="logoNav" />
+            <a href="index.html" aria-label="Inicio">
+              <img src="src/logo_completo_horizontal_nobg.png" alt="Daydream Sessions" class="logoNav" />
+            </a>
           </div>
           <!-- Centro: menú -->
           <div class="col header-center">
@@ -71,7 +73,7 @@
                   </svg>
                 </a>
               </div>
-              <a class="btn btn-outline-light btn-sm ml-3 d-inline-flex align-items-center" href="src/DOSSIER%20DAYDREAM%20SESSIONS.pdf" download>
+              <a class="btn btn-outline-light btn-sm ml-3 d-inline-flex align-items-center" href="src/DOSSIER%20DAYDREAM%20SESSIONS.pdf" target="_blank" rel="noopener">
                 <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" class="mr-1">
                   <rect x="4" y="2" width="14" height="20" rx="2"></rect>
                   <path d="M8 6h6M8 10h6M8 14h3"></path>
@@ -83,28 +85,52 @@
         </div>
       </div>
     </header>
-    <!-- Hero intermedio con foto de Nosotros y rótulo COMUNIDAD -->
+    <!-- Hero aniversario2: central 60% simulada fija por JS y laterales difuminados, rótulo NOSOTROS -->
     <section class="media-hero-container">
-      <div class="media-hero media-hero--todos">
-        <img class="media-hero__img" src="src/todos.jpg" alt="Daydream Sessions - Comunidad" />
+      <div class="media-hero media-hero--aniversario">
+        <div class="media-hero__center"></div>
+        <div class="media-hero-label">NOSOTROS</div>
       </div>
     </section>
 
     <!-- Titular principal tras el hero -->
-    <section class="py-4">
-      <div class="container">
-        <div class="align-with-hero">
-        <h1 class="display-4 text-center text-dark mb-0">- La Comunidad -</h1>
-        <p class="lead text-dark mt-3" style="text-align: justify;">
-          Daydream Sessions nace a principio de 2023 en Lugo, con la intención de llevar la celebración de 
-          la música a todos los rincones gestionando eventos con colaboradores alla donde vamos. 
-          Organizamos sesiones donde incluimos a los músicos que quieran venir a tocar con nosotros nuestros temas,
-           los suyos o alguna versión. Sin ensayos previos, sin límites en los géneros, abierto a todo el mundo. 100% único.
-        </p>
-        <h2 class="text-center text-dark mt-4">- La banda -</h2>
+      <section class="py-5">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <div class="section-heading section-heading--left mb-3">
+                <h2 class="h1 text-dark">La comunidad</h2>
+              </div>
+              <p class="lead text-dark mb-0" style="text-align: justify;">
+                Daydream Sessions nace a principios de 2023 en Lugo, con la intención de llevar la celebración de la música a todos los rincones gestionando eventos con colaboradores allá donde vamos. Organizamos sesiones donde incluimos a los músicos que quieran venir a tocar con nosotros nuestros temas, los suyos o alguna versión, y les dotamos de los recursos para ello.
+                 Sin ensayos previos, sin límites en los géneros, sin un grupo fijo, abierto a todo el mundo. 100% único.
+              </p>
+            </div>
+            <div class="col-md-6 text-center mt-4 mt-md-0">
+              <img src="src/todos.jpg" alt="La comunidad - Daydream Sessions" class="img-fluid rounded" />
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section class="py-5">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-6 order-md-1 text-center mb-4 mb-md-0">
+              <img src="src/trio.jpg" alt="La banda - Daydream Sessions" class="img-fluid rounded" />
+            </div>
+            <div class="col-md-6 order-md-2 text-md-right">
+              <div class="section-heading section-heading--right mb-3">
+                <h2 class="h1 text-dark">La banda</h2>
+              </div>
+              <p class="lead text-dark mb-0" style="text-align: justify;">
+                El núcleo musical de Daydream Sessions se conforma de 3 músicos de distintas escenas que comparten una misma idea: crear y compartir música en comunidad. En nuestras sesiones
+                los encontrarás siempre presentes, y quizá a algún colaborador habitual, pero el resto de integrantes se van rotando para cada tema.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
     <main>
       
