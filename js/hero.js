@@ -16,10 +16,24 @@
     var heroes = document.querySelectorAll('.media-hero');
     for (var i=0;i<heroes.length;i++) applyParallax(heroes[i]);
   }
+  function updateHeroWidth(){
+    var img = document.querySelector('.media-hero .media-hero__img');
+    if (img) {
+      var w = img.getBoundingClientRect().width;
+      if (w && w > 0) {
+        document.documentElement.style.setProperty('--hero-content-width', w + 'px');
+      }
+    }
+  }
   function init(){
     onScroll();
+    updateHeroWidth();
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
+    window.addEventListener('resize', function(){ onScroll(); updateHeroWidth(); });
+    var img = document.querySelector('.media-hero .media-hero__img');
+    if (img && !img.complete) {
+      img.addEventListener('load', updateHeroWidth, { once: true });
+    }
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);

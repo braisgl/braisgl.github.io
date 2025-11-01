@@ -91,6 +91,19 @@ header .navbar-extra { display: flex; align-items: center; justify-content: flex
 /* Separación mínima entre el último item del menú y el primer icono */
 header .navbar-extra { padding-left: 1rem; }
 
+/* Grid de cabecera: logo izquierda, menú centrado, RRSS derecha con márgenes simétricos */
+@media (min-width: 768px) {
+    header .header-grid { display: grid !important; grid-template-columns: 1fr auto 1fr; align-items: center; }
+    header .header-left { justify-self: start; }
+    header .header-center { justify-self: center; }
+    header .header-right { justify-self: end; }
+    /* Asegurar centrado del menú y separación cómoda */
+    header .header-center .navbar { justify-content: center; }
+    header .header-center .navbar-nav { gap: 1.75rem; }
+    /* La columna derecha ya no necesita desplazar con margin-left:auto */
+    header .navbar-extra { margin-left: 0; }
+}
+
 /* Iconos en header blancos; en hover, más suave */
 header .social-icons a,
 header .social-icons a:visited { color: #ffffff !important; }
@@ -152,6 +165,60 @@ header .navbar-extra .btn-outline-light svg { margin-right: 0.35rem; }
     overflow: hidden;
 }
 
+/* Variante con foto de todos para el hero del índice */
+.media-hero--todos {
+    /* Imagen base para esta variante (usada por capas internas) */
+    --hero-image: url('../src/todos.jpg');
+    /* anulamos la imagen por defecto del hero */
+    background-image: none;
+    /* mayor altura para mostrar la foto completa sin recorte */
+    height: 30vh;
+    max-height: 380px;
+}
+
+/* Capa de fondo: ocupa todo, hace cover, está más opaca y con blur para rellenar los lados */
+.media-hero--todos::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--hero-image);
+    background-size: cover;
+    background-position: center center;
+    filter: blur(6px);
+    transform: scale(1.06); /* evita bordes duros tras el blur */
+    opacity: 0.75; /* más opaca que la imagen central */
+    will-change: transform;
+    z-index: 0;
+}
+
+/* Capa central: mantiene la foto completa (contain) centrada */
+.media-hero__image {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-image: var(--hero-image);
+    background-repeat: no-repeat;
+    /* Mostrar la foto con su ancho "natural" respecto a la altura del hero,
+       recortando ligeramente por arriba y abajo para centrar en las personas
+       y dejando ver a los lados el fondo difuminado (pseudo ::before). */
+    background-size: contain; /* asegurar que no se recorta si se usa esta variante */
+    background-position: center center;
+}
+
+/* Imagen central como <img>: ocupa el alto completo, sin recorte, centrada */
+.media-hero__img {
+    position: relative;
+    z-index: 1;
+    display: block;
+    height: 100%;
+    width: auto;
+    margin: 0 auto; /* centra horizontalmente */
+}
+
+/* Asegura que el rótulo quede por encima de las capas */
+.media-hero .media-hero-label { z-index: 2; }
+
     /* Forzar en Contacto que la imagen del hero sea 'nosotros.jpg' (prioridad > .media-hero) */
     .media-hero.media-hero--nosotros {
         background-image: url('../src/nosotros.jpg');
@@ -185,6 +252,9 @@ header .navbar-extra .btn-outline-light svg { margin-right: 0.35rem; }
 
 /* Reducir la altura general de la barra (anula utilidades bootstrap py-3) */
 header .row.align-items-center.py-3 { padding-top: 0.85rem !important; padding-bottom: 0.85rem !important; }
+
+/* Contenido alineado al ancho visible de la foto del hero */
+.align-with-hero { max-width: var(--hero-content-width, 1000px); margin-left: auto; margin-right: auto; }
 
 /* Móvil: mostrar menú siempre debajo del logo, distribución equitativa y separación */
 @media (max-width: 767.98px) {

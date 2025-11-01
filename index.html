@@ -19,70 +19,92 @@
   <body>
     <header>
       <div class="container">
-        <div class="row align-items-center py-3">
-          <div class="col-6">
+        <div class="row align-items-center py-3 header-grid">
+          <!-- Izquierda: logo -->
+          <div class="col-auto header-left">
             <img src="src/logo_completo_horizontal_nobg.png" alt="Daydream Sessions" class="logoNav" />
           </div>
-          <div class="col-6">
-            <nav class="navbar navbar-expand navbar-dark">
-              <button class="navbar-toggler ms-auto" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="true" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse justify-content-md-between" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.html"><span class="nav-text">El proyecto</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="html/media.html"><span class="nav-text">Video</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="html/contacto.html"><span class="nav-text">Contacto</span></a>
-                  </li>
-                </ul>
-                <div class="navbar-extra d-none d-md-flex align-items-center ml-3">
-                  <div class="social-icons">
-                    <a href="https://www.youtube.com/@daydreamsessions" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <rect x="2" y="6" width="20" height="12" rx="3" ry="3"></rect>
-                        <path d="M10 8l6 4-6 4V8z"></path>
-                      </svg>
-                    </a>
-                    <a href="https://daydreamsessions.bandcamp.com/" target="_blank" rel="noopener" aria-label="Bandcamp" title="Bandcamp">
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <polygon points="4,6 18,6 14,18 0,18"></polygon>
-                      </svg>
-                    </a>
-                    <a href="https://open.spotify.com/playlist/2B3Dz8tAwPMGMLA4QkN8Lq?si=e5c06789f9bf4095" target="_blank" rel="noopener" aria-label="Spotify" title="Spotify">
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <path d="M7 9c3-1 7-.5 10 1"></path>
-                        <path d="M7 12.5c3-1 6-.5 8.5 1"></path>
-                        <path d="M7 16c2.5-1 5-.5 7 .5"></path>
-                      </svg>
-                    </a>
-                    <a href="https://www.instagram.com/daydreamsessions/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <rect x="3" y="3" width="18" height="18" rx="5"></rect>
-                        <circle cx="12" cy="12" r="4"></circle>
-                        <circle cx="17" cy="7" r="1.5"></circle>
-                      </svg>
-                    </a>
-                  </div>
-                  <a class="btn btn-outline-light btn-sm ml-3 d-inline-flex align-items-center" href="src/DOSSIER%20DAYDREAM%20SESSIONS.pdf" download>
-                    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" class="mr-1">
-                      <rect x="4" y="2" width="14" height="20" rx="2"></rect>
-                      <path d="M8 6h6M8 10h6M8 14h3"></path>
-                    </svg>
-                    Dossier
-                  </a>
-                </div>
-              </div>
+          <!-- Centro: menú -->
+          <div class="col header-center">
+            <nav class="navbar navbar-expand navbar-dark justify-content-center p-0 m-0">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="index.html"><span class="nav-text">Nosotros</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="html/media.html"><span class="nav-text">Video</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="html/contacto.html"><span class="nav-text">Contacto</span></a>
+                </li>
+              </ul>
             </nav>
+          </div>
+          <!-- Derecha: RRSS + Dossier -->
+          <div class="col-auto header-right">
+            <div class="navbar-extra d-none d-md-flex align-items-center ml-3">
+              <div class="social-icons">
+                <a href="https://www.youtube.com/@daydreamsessions" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="2" y="6" width="20" height="12" rx="3" ry="3"></rect>
+                    <path d="M10 8l6 4-6 4V8z"></path>
+                  </svg>
+                </a>
+                <a href="https://daydreamsessions.bandcamp.com/" target="_blank" rel="noopener" aria-label="Bandcamp" title="Bandcamp">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <polygon points="4,6 18,6 14,18 0,18"></polygon>
+                  </svg>
+                </a>
+                <a href="https://open.spotify.com/playlist/2B3Dz8tAwPMGMLA4QkN8Lq?si=e5c06789f9bf4095" target="_blank" rel="noopener" aria-label="Spotify" title="Spotify">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M7 9c3-1 7-.5 10 1"></path>
+                    <path d="M7 12.5c3-1 6-.5 8.5 1"></path>
+                    <path d="M7 16c2.5-1 5-.5 7 .5"></path>
+                  </svg>
+                </a>
+                <a href="https://www.instagram.com/daydreamsessions/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <circle cx="17" cy="7" r="1.5"></circle>
+                  </svg>
+                </a>
+              </div>
+              <a class="btn btn-outline-light btn-sm ml-3 d-inline-flex align-items-center" href="src/DOSSIER%20DAYDREAM%20SESSIONS.pdf" download>
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" class="mr-1">
+                  <rect x="4" y="2" width="14" height="20" rx="2"></rect>
+                  <path d="M8 6h6M8 10h6M8 14h3"></path>
+                </svg>
+                Dossier
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </header>
+    <!-- Hero intermedio con foto de Nosotros y rótulo COMUNIDAD -->
+    <section class="media-hero-container">
+      <div class="media-hero media-hero--todos">
+        <img class="media-hero__img" src="src/todos.jpg" alt="Daydream Sessions - Comunidad" />
+      </div>
+    </section>
+
+    <!-- Titular principal tras el hero -->
+    <section class="py-4">
+      <div class="container">
+        <div class="align-with-hero">
+        <h1 class="display-4 text-center text-dark mb-0">- La Comunidad -</h1>
+        <p class="lead text-dark mt-3" style="text-align: justify;">
+          Daydream Sessions nace a principio de 2023 en Lugo, con la intención de llevar la celebración de 
+          la música a todos los rincones gestionando eventos con colaboradores alla donde vamos. 
+          Organizamos sesiones donde incluimos a los músicos que quieran venir a tocar con nosotros nuestros temas,
+           los suyos o alguna versión. Sin ensayos previos, sin límites en los géneros, abierto a todo el mundo. 100% único.
+        </p>
+        <h2 class="text-center text-dark mt-4">- La banda -</h2>
+        </div>
+      </div>
+    </section>
 
     <main>
       
@@ -126,6 +148,7 @@
     <!-- JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script defer src="js/sticky-header.js"></script>
+    <script defer src="js/hero.js"></script>
     <!-- Bootstrap Bundle (CDN, minified) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
   </body>
