@@ -48,3 +48,9 @@ Alternativa más segura: usar un proxy/worker server-side (Cloudflare Workers/Pa
 - `js/media.js` manejará la ausencia de `apiKey` mostrando un listado vacío sin romper la página.
 - El reproductor añade `origin` al `iframe` para reducir problemas de identidad del embed.
 - El formulario de contacto no admite adjuntos (simplificado para fiabilidad y límites de tamaño).
+
+## TODO
+
+- Crear tarjetas en popup del equipo
+- Arreglar formatos en las fotos, encuadres, recortes y responsividad
+- Videos de otros proyectos

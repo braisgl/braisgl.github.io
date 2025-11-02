@@ -33,25 +33,10 @@ body{
     animation: fadeInRight 0.9s ease-out forwards;
 }
 
-.fade-in-right.is-hidden {
-    animation: fadeOutLeft 0.6s ease-in forwards;
-}
-
 @keyframes fadeInRight {
     to {
         opacity: 1;
         transform: translateX(0);
-    }
-}
-
-@keyframes fadeOutLeft {
-    from {
-        opacity: 1;
-        transform: translateX(0);
-    }
-    to {
-        opacity: 0;
-        transform: translateX(-100px);
     }
 }
 
@@ -64,25 +49,48 @@ body{
     animation: fadeInUp 0.9s ease-out forwards;
 }
 
-.fade-in-up.is-hidden {
-    animation: fadeOutDown 0.6s ease-in forwards;
+.fade-in-up .band-member-card {
+    opacity: 0;
+    transform: translateY(80px);
+}
+
+.fade-in-up.is-visible .band-member-card {
+    animation: fadeInUp 0.9s ease-out forwards;
+}
+
+.fade-in-up.is-visible .band-member-card:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.fade-in-up.is-visible .band-member-card:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.fade-in-up.is-visible .band-member-card:nth-child(3) {
+    animation-delay: 1s;
+}
+
+.fade-in-up.is-visible .band-member-card:nth-child(4) {
+    animation-delay: 1.5s;
+}
+
+.fade-in-left-scroll {
+    opacity: 0;
+    transform: translateX(-100px);
+}
+
+.fade-in-left-scroll.is-visible {
+    animation: fadeInLeft 0.9s ease-out forwards;
 }
 
 @keyframes fadeInUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeOutDown {
     from {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    to {
         opacity: 0;
         transform: translateY(80px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
@@ -104,13 +112,10 @@ body{
     .fade-in-right,
     .fade-in-right.is-visible,
     .fade-in-up,
-    .fade-in-up.is-visible {
-        animation: none;
-        opacity: 1;
-        transform: none;
-    }
-    .fade-in-right.is-hidden,
-    .fade-in-up.is-hidden {
+    .fade-in-up.is-visible,
+    .fade-in-up .band-member-card,
+    .fade-in-left-scroll,
+    .fade-in-left-scroll.is-visible {
         animation: none;
         opacity: 1;
         transform: none;
@@ -175,7 +180,7 @@ header{
     font-size: 0.875rem; /* ~14px */
     color: #6c757d; /* bootstrap secondary text */
 }
-.form-hint .asterisk { color: #dc3545; }
+.asterisk { color: #dc3545; }
 
 /* Navbar - el link activo un 15% más grande en todas las páginas */
 /* Todas las opciones +25% y sin salto de línea */
@@ -232,14 +237,14 @@ header .navbar-extra .btn-outline-light svg { margin-right: 0.35rem; }
 
 /* Contact hero override: aumentar altura y centrar rostros */
 .media-hero.media-hero--nosotros {
-    height: 40vh; /* aún más alto para mostrar mejor los rostros */
-    max-height: 520px;
+    height: 540px;
+    max-height: none;
     background-position: 50% 40%;
 }
 
 /* Contacto: adelantar el formulario hacia arriba (sobreponiéndose parcialmente al hero) */
-.contact-first-section { margin-top: -32px; }
-@media (min-width: 992px) { .contact-first-section { margin-top: -48px; } }
+.contact-first-section { margin-top: -20px; padding-bottom: 0; }
+@media (min-width: 992px) { .contact-first-section { margin-top: -48px; padding-bottom: 0; } }
 
 /* Video page: fondo negro en el bloque del reproductor y textos claros */
 .active-video-section { background-color: #141414; }
@@ -360,6 +365,13 @@ header .navbar-extra .btn-outline-light svg { margin-right: 0.35rem; }
     height: 2px; border-radius: 1px; background: rgba(20,20,20,0.25);
 }
 .section-heading--right { text-align: right; }
+.section-heading--center { text-align: center; }
+.section-heading--center::after {
+    left: 0;
+    right: 0;
+    transform: none;
+    width: 100%;
+}
 
 /* Capa central: mantiene la foto completa (contain) centrada */
 .media-hero__image {
@@ -412,12 +424,12 @@ header .navbar-extra .btn-outline-light svg { margin-right: 0.35rem; }
     left: 50%;
     transform: translate(-50%, -50%);
     opacity: 0;
-    animation: heroFadeIn 0.8s ease-out 0.4s forwards;
+    animation: heroFadeIn 0.8s ease-out 0.9s forwards;
     font-family: 'Montserrat-Semibold', sans-serif;
     font-weight: 600;
     color: #fff;
-    letter-spacing: 0.15em;
-    font-size: clamp(2rem, 8vw, 6rem);
+    letter-spacing: 0.12em;
+    font-size: clamp(1.5rem, 7.2vw, 5.4rem);
     text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 .video-list-section .card-body { background: transparent !important; }
@@ -431,6 +443,10 @@ header .navbar-extra .btn-outline-light svg { margin-right: 0.35rem; }
     object-position: 50% 50%;
     display: block;
     margin: 0 auto;
+}
+
+.band-member-card--compact .band-member-img {
+    width: 55%;
 }
 
 /* Variante de contacto: recorte superior del 25% */
@@ -470,8 +486,8 @@ header .row.align-items-center.py-3 { padding-top: 0.85rem !important; padding-b
 
     /* Reafirmar override del hero de Contacto al final del archivo para evitar reglas anteriores */
     .media-hero.media-hero--nosotros {
-        height: 40vh;
-        max-height: 520px;
+        height: 540px;
+        max-height: none;
         background-position: 50% 40%;
     }
 
@@ -479,6 +495,7 @@ header .row.align-items-center.py-3 { padding-top: 0.85rem !important; padding-b
 footer.site-footer {
     background-color: #141414;
     color: #ffffff;
+    margin-top: 0;
 }
 footer.site-footer a { color: #ffffff; text-decoration: none; }
 footer.site-footer a:hover { color: #cccccc; text-decoration: none; }

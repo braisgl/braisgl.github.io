@@ -123,6 +123,9 @@
               <div id="formAlertError" class="alert alert-danger d-none" role="alert">
                 Ha ocurrido un problema al preparar el envío. Revisa los datos e inténtalo de nuevo.
               </div>
+              <div id="formAlertEmail" class="alert alert-warning d-none" role="alert">
+                El formato del correo electrónico no es válido. Revisa la dirección e inténtalo de nuevo.
+              </div>
 
               <!-- Formulario -->
               <form id="contactForm" class="needs-validation" novalidate>
@@ -130,30 +133,27 @@
                 <input type="hidden" id="to_email" name="to_email" value="" />
                 <input type="hidden" id="sent_at" name="sent_at" value="" />
                 <div class="mb-3">
-                  <label for="name" class="form-label">Nombre</label>
-                  <input type="text" class="form-control" id="name" name="from_name" placeholder="Tu nombre" required />
-                  <div class="form-hint text-end">Obligatorio <span class="asterisk">*</span></div>
+                  <label for="name" class="form-label">Nombre <span class="asterisk">*</span></label>
+                  <input type="text" class="form-control" id="name" name="from_name" placeholder="Obligatorio" required />
                   <div class="invalid-feedback">El nombre es obligatorio.</div>
                 </div>
 
                 <div class="mb-3">
-                  <label for="email" class="form-label">Correo electrónico</label>
-                  <input type="email" class="form-control" id="email" name="reply_to" placeholder="nombre@ejemplo.com" required />
-                  <div class="form-hint text-end">Obligatorio <span class="asterisk">*</span></div>
+                  <label for="email" class="form-label">Correo electrónico <span class="asterisk">*</span></label>
+                  <input type="email" class="form-control" id="email" name="reply_to" placeholder="Obligatorio" required />
                   <div class="invalid-feedback">Introduce un correo electrónico válido.</div>
                 </div>
 
                 <div class="mb-3">
                   <label for="phone" class="form-label">Teléfono</label>
-                  <input type="tel" class="form-control" id="phone" name="phone" placeholder="Tu número de teléfono" />
+                  <input type="tel" class="form-control" id="phone" name="phone" placeholder="" />
                 </div>
 
                 
 
                 <div class="mb-4">
-                  <label for="message" class="form-label">Mensaje</label>
-                  <textarea class="form-control" id="message" name="message" rows="5" placeholder="Escribe tu mensaje aquí" required></textarea>
-                  <div class="form-hint text-end">Obligatorio <span class="asterisk">*</span></div>
+                  <label for="message" class="form-label">Mensaje <span class="asterisk">*</span></label>
+                  <textarea class="form-control" id="message" name="message" rows="5" placeholder="Escribe aqui tu mensaje" required></textarea>
                   <div class="invalid-feedback">El mensaje es obligatorio.</div>
                 </div>
 
@@ -170,7 +170,7 @@
       </section>
     </main>
 
-    <footer class="site-footer py-4 mt-5">
+  <footer class="site-footer py-4">
       <div class="container text-center">
         <div class="social-icons mb-2">
           <a href="https://www.youtube.com/@daydreamsessions" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">

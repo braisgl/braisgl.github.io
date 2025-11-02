@@ -10,6 +10,10 @@
   const submitSpinner = document.getElementById('submitSpinner');
   const alertSuccess = document.getElementById('formAlertSuccess');
   const alertError = document.getElementById('formAlertError');
+  const alertEmail = document.getElementById('formAlertEmail');
+  const emailInput = document.getElementById('email');
+
+  const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   // Config por defecto (se puede sobreescribir con window.EMAILJS_CONFIG desde config.emailjs.js)
   const defaultConfig = {
@@ -50,6 +54,7 @@
   function resetAlerts() {
     hide(alertSuccess);
     hide(alertError);
+    hide(alertEmail);
   }
 
   // Sin adjuntos: no hay validación extra
@@ -108,22 +113,41 @@
   }
 
   function validateForm() {
-    // Bootstrap validation UI
-    if (!form.checkValidity()) {
-      form.classList.add('was-validated');
-      return false;
+    let emailFormatInvalid = false;
+
+    if (emailInput) {
+      emailInput.setCustomValidity('');
+      const emailValue = emailInput.value.trim();
+      if (emailValue && !EMAIL_REGEX.test(emailValue)) {
+        emailInput.setCustomValidity('Formato de correo no válido.');
+        emailFormatInvalid = true;
+      }
     }
-    return true;
+
+    // Bootstrap validation UI
+    const isValid = form.checkValidity();
+    if (!isValid) {
+      form.classList.add('was-validated');
+    }
+
+    return { isValid, emailFormatInvalid };
   }
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     resetAlerts();
 
-    if (!validateForm()) return;
+    const { isValid, emailFormatInvalid } = validateForm();
+    if (!isValid) {
+      if (emailFormatInvalid) {
+        show(alertEmail);
+        emailInput?.focus();
+      }
+      return;
+    }
 
   const name = document.getElementById('name').value.trim();
-  const email = document.getElementById('email').value.trim();
+  const email = emailInput?.value.trim() || '';
   const phone = document.getElementById('phone').value.trim();
   const message = document.getElementById('message').value.trim();
 

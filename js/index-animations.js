@@ -19,12 +19,6 @@
     rightBlock.classList.add('is-visible');
   }
 
-  function hideBlock() {
-    if (!rightBlock || !hasShown) return;
-    rightBlock.classList.remove('is-visible');
-    rightBlock.classList.add('is-hidden');
-  }
-
   function updateState() {
     if (!rightBlock) return;
 
@@ -32,8 +26,6 @@
       if (!rightBlock.classList.contains('is-visible')) {
         showBlock();
       }
-    } else if (rightBlock.classList.contains('is-visible')) {
-      hideBlock();
     }
   }
 
@@ -61,73 +53,90 @@
 })();
 
 (function () {
-  var fadeBlocks;
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var shownSet = new WeakSet();
+  var observerSupported = 'IntersectionObserver' in window;
+  var state = new WeakMap();
+  var fallbackItems = [];
+
+  function getExtraOffset(el) {
+    var value = parseInt(el.getAttribute('data-extra-offset'), 10);
+    return isNaN(value) ? 0 : Math.max(0, value);
+  }
 
   function show(el) {
+    if (state.get(el)) return;
     el.classList.remove('is-hidden');
     el.classList.add('is-visible');
-    shownSet.add(el);
+    state.set(el, true);
   }
 
-  function hide(el) {
-    if (!shownSet.has(el)) return;
-    el.classList.remove('is-visible');
-    el.classList.add('is-hidden');
-  }
+  function initObserverForElement(el) {
+    var extra = getExtraOffset(el);
+    var margin = -120 - extra;
 
-  function initObserver() {
-    if (!('IntersectionObserver' in window)) return null;
-
-    var observer = new IntersectionObserver(function (entries) {
+    var observer = new IntersectionObserver(function (entries, obs) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           show(entry.target);
-        } else {
-          hide(entry.target);
+          obs.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -100px 0px' });
+    }, { threshold: 0.15, rootMargin: '0px 0px ' + margin + 'px 0px' });
 
-    fadeBlocks.forEach(function (el) { observer.observe(el); });
-
-    return observer;
+    observer.observe(el);
   }
 
   function checkFallback() {
     var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    var baseTrigger = Math.max(0, viewportHeight * 0.85 - 120);
 
-    var triggerPoint = Math.max(0, viewportHeight * 0.85 - 100);
-
-    fadeBlocks.forEach(function (el) {
-      var rect = el.getBoundingClientRect();
-      var isVisible = rect.top <= triggerPoint && rect.bottom >= 0;
-
-      if (isVisible) {
-        show(el);
-      } else {
-        hide(el);
+    fallbackItems = fallbackItems.filter(function (item) {
+      if (state.get(item.el)) {
+        return false;
       }
+
+      var triggerPoint = baseTrigger - item.extra;
+      var rect = item.el.getBoundingClientRect();
+
+      if (rect.top <= triggerPoint && rect.bottom >= 0) {
+        show(item.el);
+        return false;
+      }
+
+      return true;
     });
+
+    if (!fallbackItems.length) {
+      window.removeEventListener('scroll', checkFallback);
+      window.removeEventListener('resize', checkFallback);
+    }
   }
 
-  function init() {
-    fadeBlocks = Array.prototype.slice.call(document.querySelectorAll('.fade-in-up'));
-    if (!fadeBlocks.length) return;
-
-    if (reduceMotion) {
-      fadeBlocks.forEach(function (el) { el.classList.add('is-visible'); });
-      return;
-    }
-
-    if (initObserver()) {
-      return;
-    }
+  function initFallback(elements) {
+    fallbackItems = elements.map(function (el) {
+      return { el: el, extra: getExtraOffset(el) };
+    });
 
     checkFallback();
     window.addEventListener('scroll', checkFallback, { passive: true });
     window.addEventListener('resize', checkFallback);
+  }
+
+  function init() {
+  var elements = Array.prototype.slice.call(document.querySelectorAll('.fade-in-up, .fade-in-left-scroll'));
+    if (!elements.length) return;
+
+    if (reduceMotion) {
+      elements.forEach(show);
+      return;
+    }
+
+    if (observerSupported) {
+      elements.forEach(initObserverForElement);
+      return;
+    }
+
+    initFallback(elements);
   }
 
   if (document.readyState === 'loading') {
