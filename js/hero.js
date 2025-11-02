@@ -3,6 +3,12 @@
     var n = parseFloat(val);
     return isNaN(n) ? def : n;
   }
+  function getScrollY(){
+    if (typeof window.scrollY === 'number') return window.scrollY;
+    if (typeof window.pageYOffset === 'number') return window.pageYOffset;
+    var doc = document.documentElement || document.body;
+    return doc ? doc.scrollTop : 0;
+  }
   function applyParallax(el){
     var cropTop = toNumber(el.getAttribute('data-crop-top'), 0.0);
     var speed = toNumber(el.getAttribute('data-speed'), 0.4);
@@ -49,10 +55,12 @@
       var hr = hero.getBoundingClientRect();
       // Base: mantener el elemento centrado en X y su Y unida al hero
       center.style.transform = 'translate(-50%, 0)';
-  // Offset fijo: usar la posición inicial para anclar el apoyo al pie del hero en reposo
-  if (!center.dataset.initTop) { center.dataset.initTop = String(hr.top); }
+      // Usa la posición absoluta del hero como referencia para simular background fixed
+      var scrollY = getScrollY();
+  if (!center.dataset.initTop) { center.dataset.initTop = String(scrollY + hr.top); }
   var initTop = parseFloat(center.dataset.initTop || '0');
-      var offsetPx = (initTop - hr.top); // equivalente al scroll dentro del hero
+  if (!Number.isFinite(initTop)) { initTop = scrollY + hr.top; }
+      var offsetPx = initTop - hr.top; // desplazamiento equivalente al scroll acumulado
       center.style.backgroundPosition = '50% calc(100% + ' + offsetPx + 'px)';
     }
   }
@@ -73,7 +81,7 @@
       var hero = center.closest('.media-hero');
       if (!hero) continue;
       var hr = hero.getBoundingClientRect();
-      center.dataset.initTop = String(hr.top);
+      center.dataset.initTop = String(getScrollY() + hr.top);
     }
     onScroll();
     updateHeroWidth();

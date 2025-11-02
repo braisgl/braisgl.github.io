@@ -299,8 +299,8 @@ header .navbar-extra .btn-outline-light svg { margin-right: 0.35rem; }
     --hero-image: url('../src/aniversario2.jpg');
     background-image: none;
     /* mismo alto que el hero de Contacto */
-    height: 40vh;
-    max-height: 520px;
+    height: 540px;
+    max-height: none;
 }
 
 /* Capa de fondo: ocupa todo, hace cover, está más opaca y con blur para rellenar los lados */
