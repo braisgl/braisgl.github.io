@@ -424,13 +424,17 @@ header .navbar-extra .btn-outline-light svg { margin-right: 0.35rem; }
     left: 50%;
     transform: translate(-50%, -50%);
     opacity: 0;
-    animation: heroFadeIn 0.8s ease-out 0.9s forwards;
     font-family: 'Montserrat-Semibold', sans-serif;
     font-weight: 600;
     color: #fff;
     letter-spacing: 0.12em;
     font-size: clamp(1.5rem, 7.2vw, 5.4rem);
     text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+html.page-loaded .media-hero .media-hero-label,
+body.page-loaded .media-hero .media-hero-label {
+    animation: heroFadeIn 0.8s ease-out 0.9s forwards;
 }
 .video-list-section .card-body { background: transparent !important; }
 .video-list-section .card-title { color: #141414 !important; }
