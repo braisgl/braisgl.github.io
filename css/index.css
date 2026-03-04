@@ -9,14 +9,6 @@ html{
 body{
     color: white;
 }
-/* Fade-in from the left for the community block */
-.fade-in-left {
-    opacity: 0;
-    transform: translateX(-100px);
-    animation: fadeInLeft 0.9s ease-out forwards;
-    animation-delay: 1s;
-}
-
 @keyframes fadeInLeft {
     to {
         opacity: 1;
@@ -104,11 +96,6 @@ body{
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .fade-in-left {
-        animation: none;
-        opacity: 1;
-        transform: none;
-    }
     .fade-in-right,
     .fade-in-right.is-visible,
     .fade-in-up,
@@ -141,10 +128,7 @@ header{
 .nav-text{
     color: white;
 }
-/* Contact page background and panel */
-.contact-page {
-    background: url('../src/nosotros.jpg') center center / cover no-repeat fixed;
-}
+/* Contact page */
 .contact-panel {
     background: rgba(255,255,255,0.9);
     border-radius: 0.5rem;
@@ -155,20 +139,13 @@ header{
 .contact-panel p,
 .contact-panel label { color: #141414; }
 .logoNav {
-    /* Ocupa todo el ancho del bloque izquierdo (col-*) */
     width: 100%;
     max-width: 100%;
+    max-height: 85px;
     height: auto;
-
-    /* Centrado dentro del bloque */
     display: block;
     margin: 0 auto;
-
-        /* Sin margen interior */
     padding: 0;
-
-    /* Mantener proporción sin deformar y limitar altura para reducir la barra */
-            max-height: 85px; /* -15% altura navbar */
     object-fit: contain;
     object-position: center;
 }
@@ -202,10 +179,8 @@ header{
     .navbar .navbar-nav .nav-link { text-align: center; display: inline-flex; align-items: center; }
 }
 
-/* Bloque derecho en header: RRSS + Dossier alineados a la derecha y mismo ancho que menú */
-header .navbar-extra { display: flex; align-items: center; justify-content: flex-end; gap: 0.75rem; margin-left: auto; flex: 0 0 auto; }
-/* Separación mínima entre el último item del menú y el primer icono */
-header .navbar-extra { padding-left: 1rem; }
+/* Bloque derecho en header: RRSS + Dossier */
+header .navbar-extra { display: flex; align-items: center; justify-content: flex-end; gap: 0.75rem; margin-left: auto; flex: 0 0 auto; padding-left: 1rem; }
 
 /* Grid de cabecera: logo izquierda, menú centrado, RRSS derecha con márgenes simétricos */
 @media (min-width: 768px) {
@@ -235,13 +210,6 @@ header .navbar-extra .btn-outline-light svg { width: 1.1rem; height: 1.1rem; fil
 /* Espaciado del icono PDF dentro del botón */
 header .navbar-extra .btn-outline-light svg { margin-right: 0.35rem; }
 
-/* Contact hero override: aumentar altura y centrar rostros */
-.media-hero.media-hero--nosotros {
-    height: 540px;
-    max-height: none;
-    background-position: 50% 40%;
-}
-
 /* Contacto: adelantar el formulario hacia arriba (sobreponiéndose parcialmente al hero) */
 .contact-first-section { margin-top: -20px; padding-bottom: 0; }
 @media (min-width: 992px) { .contact-first-section { margin-top: -48px; padding-bottom: 0; } }
@@ -268,7 +236,6 @@ header .navbar-extra .btn-outline-light svg { margin-right: 0.35rem; }
 
 /* Media hero between navbar and main panel */
 .media-hero-container { display: flex; justify-content: center; margin: 0; padding: 0; }
-.media-hero--nosotros { background-image: url('../src/nosotros.jpg'); }
 .media-hero {
     width: 100%;
     height: 24vh; /* -10% adicional respecto a 27vh */
@@ -282,17 +249,6 @@ header .navbar-extra .btn-outline-light svg { margin-right: 0.35rem; }
     overflow: hidden;
 }
 
-/* Variante con foto de todos para el hero del índice */
-.media-hero--todos {
-    /* Imagen base para esta variante (usada por capas internas) */
-    --hero-image: url('../src/todos.jpg');
-    /* anulamos la imagen por defecto del hero */
-    background-image: none;
-    /* +20% de altura para aumentar el tamaño de la foto sin recortar */
-    height: 36vh;
-    max-height: 456px;
-}
-
 /* Variante aniversario para la home (blanco y negro) */
 .media-hero--aniversario {
     /* Imagen base para esta variante */
@@ -301,22 +257,6 @@ header .navbar-extra .btn-outline-light svg { margin-right: 0.35rem; }
     /* mismo alto que el hero de Contacto */
     height: 540px;
     max-height: none;
-}
-
-/* Capa de fondo: ocupa todo, hace cover, está más opaca y con blur para rellenar los lados */
-.media-hero--todos::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: var(--hero-image);
-    background-size: cover;
-    background-position: center center;
-    background-attachment: fixed;
-    filter: blur(6px);
-    transform: scale(1.06); /* evita bordes duros tras el blur */
-    opacity: 0.75; /* más opaca que la imagen central */
-    will-change: transform;
-    z-index: 0;
 }
 
 /* Fondo difuminado en B/N para aniversario */
@@ -352,12 +292,7 @@ header .navbar-extra .btn-outline-light svg { margin-right: 0.35rem; }
     will-change: background-position;
 }
 
-/* Central image al 60% del ancho en el hero aniversario */
-.media-hero--aniversario .media-hero__img {
-    width: 60%;
-}
-
-/* Títulos con subrayado bajo el texto, extendiéndose hacia la foto */
+/* Títulos con subrayado bajo el texto */
 .section-heading { position: relative; padding-bottom: 0.5rem; }
 .section-heading h2 { margin: 0; }
 .section-heading::after {
@@ -366,63 +301,14 @@ header .navbar-extra .btn-outline-light svg { margin-right: 0.35rem; }
 }
 .section-heading--right { text-align: right; }
 .section-heading--center { text-align: center; }
-.section-heading--center::after {
-    left: 0;
-    right: 0;
-    transform: none;
-    width: 100%;
-}
 
-/* Capa central: mantiene la foto completa (contain) centrada */
-.media-hero__image {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    background-image: var(--hero-image);
-    background-repeat: no-repeat;
-    /* Mostrar la foto con su ancho "natural" respecto a la altura del hero,
-       recortando ligeramente por arriba y abajo para centrar en las personas
-       y dejando ver a los lados el fondo difuminado (pseudo ::before). */
-    background-size: contain; /* asegurar que no se recorta si se usa esta variante */
-    background-position: center center;
-}
-
-/* Imagen central como <img>: ocupa el alto completo, sin recorte, centrada */
-.media-hero__img {
-    position: relative;
-    z-index: 1;
-    display: block;
-    height: 100%;
-    /* Foto principal ocupa la mitad del ancho (dos cuartas partes) */
-    width: 50%;
-    max-width: 900px; /* evita crecimientos excesivos en pantallas muy anchas */
-    margin: 0 auto; /* centra horizontalmente */
-    object-fit: cover; /* recorta proporcionalmente por arriba/abajo */
-    object-position: 50% 45%; /* centra sobre las personas */
-    filter: grayscale(100%);
-    transform-origin: center center; /* estabiliza la escala en el centro */
-}
-
-/* Asegura que el rótulo quede por encima de las capas */
-.media-hero .media-hero-label { z-index: 2; }
-
-    /* Forzar en Contacto que la imagen del hero sea 'nosotros.jpg' (prioridad > .media-hero) */
-    .media-hero.media-hero--nosotros {
-        background-image: url('../src/nosotros.jpg');
-        /* centrado aproximado sobre los rostros (subimos 10%) */
-        background-position: 50% 48%;
-    }
-    /* Recorte superior adicional del 20% (25% -> 45%) para Contacto */
-    .media-hero--nosotros {
-        background-position: center 120%; /* bajar otro tanto adicional */
-    }
-/* Full width on all breakpoints */
+/* Hero label (NOSOTROS, VIDEO, CONTACTO) */
 .media-hero .media-hero-label {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 2;
     opacity: 0;
     font-family: 'Montserrat-Semibold', sans-serif;
     font-weight: 600;
@@ -453,23 +339,11 @@ body.page-loaded .media-hero .media-hero-label {
     width: 55%;
 }
 
-/* Variante de contacto: recorte superior del 25% */
-.media-hero--nosotros {
-    background-position: center 25%;
-}
-
 /* Reducir la altura general de la barra (anula utilidades bootstrap py-3) */
 header .row.align-items-center.py-3 { padding-top: 0.85rem !important; padding-bottom: 0.85rem !important; }
 
-/* Contenido alineado al ancho visible de la foto del hero */
-.align-with-hero { max-width: var(--hero-content-width, 1000px); margin-left: auto; margin-right: auto; }
-
 /* Móvil: mostrar menú siempre debajo del logo, distribución equitativa y separación */
 @media (max-width: 767.98px) {
-    /* Ocultar el toggler y mantener abierto el collapse */
-    .navbar .navbar-toggler { display: none; }
-    #navbarNavDropdown { display: block !important; height: auto !important; visibility: visible !important; }
-
     .navbar .navbar-nav {
         width: 100%;
         display: flex;
@@ -488,10 +362,11 @@ header .row.align-items-center.py-3 { padding-top: 0.85rem !important; padding-b
     }
 }
 
-    /* Reafirmar override del hero de Contacto al final del archivo para evitar reglas anteriores */
+    /* Hero de Contacto */
     .media-hero.media-hero--nosotros {
         height: 540px;
         max-height: none;
+        background-image: url('../src/nosotros.jpg');
         background-position: 50% 40%;
     }
 
