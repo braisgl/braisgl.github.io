@@ -9,6 +9,25 @@ html{
 body{
     color: white;
 }
+
+/* Hero index: misma altura que el header, imagen aniversario2 en B/N */
+.media-hero--index {
+    background: none;
+    background-attachment: scroll;
+    height: var(--header-height, 80px);
+    max-height: none;
+}
+.media-hero--index::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url('../src/aniversario2.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    filter: grayscale(100%);
+    z-index: 0;
+}
 @keyframes fadeInLeft {
     to {
         opacity: 1;
@@ -116,6 +135,7 @@ body{
 html, body { height: 100%; }
 body { display: flex; flex-direction: column; min-height: 100vh; }
 main { flex: 1 0 auto; }
+main > section.py-5 { padding-left: 10%; padding-right: 10%; font-size: 0.8em; }
 header{
     width: 100%;
     background-color: #141414;
@@ -123,7 +143,7 @@ header{
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1040; /* por encima de contenido/hero */
+    z-index: 1040;
 }
 .nav-text{
     color: white;
@@ -238,58 +258,15 @@ header .navbar-extra .btn-outline-light svg { margin-right: 0.35rem; }
 .media-hero-container { display: flex; justify-content: center; margin: 0; padding: 0; }
 .media-hero {
     width: 100%;
-    height: 24vh; /* -10% adicional respecto a 27vh */
-    max-height: 294px; /* -10% adicional respecto a 326px */
+    height: 24vh;
+    max-height: 294px;
     background-image: url('../src/santiago.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center 205%; /* bajar 15% adicional */
-    background-attachment: fixed; /* la foto permanece fija; el resto de la página se desplaza */
+    background-position: center 205%;
+    background-attachment: fixed;
     position: relative;
     overflow: hidden;
-}
-
-/* Variante aniversario para la home (blanco y negro) */
-.media-hero--aniversario {
-    /* Imagen base para esta variante */
-    --hero-image: url('../src/aniversario2.jpg');
-    background-image: none;
-    /* mismo alto que el hero de Contacto */
-    height: 540px;
-    max-height: none;
-}
-
-/* Fondo difuminado en B/N para aniversario */
-.media-hero--aniversario::before {
-    content: "";
-    position: absolute;
-    /* expandimos para evitar bordes tras el blur */
-    inset: -12px;
-    background-image: var(--hero-image);
-    background-size: cover;
-    background-position: center center;
-    background-attachment: fixed;
-    filter: grayscale(100%) blur(6px);
-    opacity: 0.75;
-    z-index: 0;
-}
-
-/* Capa central controlada por JS para simular fixed (ocupa 3/5, se recorta dentro del hero) */
-.media-hero--aniversario .media-hero__center {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 60%;
-    height: 100%;
-    transform: translate(-50%, 0);
-    background-image: var(--hero-image);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 50% 100%;
-    filter: grayscale(100%);
-    z-index: 1;
-    pointer-events: none;
-    will-change: background-position;
 }
 
 /* Títulos con subrayado bajo el texto */
@@ -342,23 +319,43 @@ body.page-loaded .media-hero .media-hero-label {
 /* Reducir la altura general de la barra (anula utilidades bootstrap py-3) */
 header .row.align-items-center.py-3 { padding-top: 0.85rem !important; padding-bottom: 0.85rem !important; }
 
-/* Móvil: mostrar menú siempre debajo del logo, distribución equitativa y separación */
+/* Móvil: logo centrado arriba, nav debajo */
 @media (max-width: 767.98px) {
-    .navbar .navbar-nav {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: nowrap; /* todas en una fila */
-        gap: 4%; /* separación menor para que quepan */
+    /* Apilar header en columna */
+    header .header-grid {
+        flex-direction: column;
+        align-items: center;
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.25rem !important;
     }
-    .navbar .navbar-nav .nav-item { flex: 1 1 0; }
+    header .header-left,
+    header .header-center {
+        flex: none;
+        width: auto;
+        max-width: none;
+    }
+    header .header-right {
+        display: none;
+    }
+
+    /* Logo 25% más pequeño (85px → 64px) */
+    .logoNav {
+        max-height: 64px;
+    }
+
+    /* Nav: centrado horizontal con separación uniforme */
+    .navbar .navbar-nav {
+        display: flex;
+        justify-content: center;
+        flex-wrap: nowrap;
+        gap: 1.5rem;
+    }
+    .navbar .navbar-nav .nav-item { flex: 0 1 auto; }
     .navbar .navbar-nav .nav-link {
         text-align: center;
-        padding: 0.5rem 0;
-        white-space: nowrap; /* evita salto de línea */
-        overflow: hidden;
-        text-overflow: ellipsis; /* recorte elegante si no cabe */
-        font-size: 1.1em; /* ligeramente menor para asegurar una fila en pantallas estrechas */
+        padding: 0.15rem 0;
+        white-space: nowrap;
+        font-size: 1em;
     }
 }
 
