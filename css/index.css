@@ -9,25 +9,6 @@ html{
 body{
     color: white;
 }
-
-/* Hero index: misma altura que el header, imagen aniversario2 en B/N */
-.media-hero--index {
-    background: none;
-    background-attachment: scroll;
-    height: var(--header-height, 80px);
-    max-height: none;
-}
-.media-hero--index::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: url('../src/aniversario2.jpg');
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    filter: grayscale(100%);
-    z-index: 0;
-}
 @keyframes fadeInLeft {
     to {
         opacity: 1;
@@ -135,7 +116,6 @@ body{
 html, body { height: 100%; }
 body { display: flex; flex-direction: column; min-height: 100vh; }
 main { flex: 1 0 auto; }
-main > section.py-5 { padding-left: 10%; padding-right: 10%; font-size: 0.8em; }
 header{
     width: 100%;
     background-color: #141414;
@@ -143,7 +123,7 @@ header{
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1040;
+    z-index: 1040; /* por encima de contenido/hero */
 }
 .nav-text{
     color: white;
@@ -255,18 +235,64 @@ header .navbar-extra .btn-outline-light svg { margin-right: 0.35rem; }
 }
 
 /* Media hero between navbar and main panel */
+/* Imagen móvil del hero: oculta por defecto (desktop) */
+.media-hero__mobile-img { display: none; }
+
 .media-hero-container { display: flex; justify-content: center; margin: 0; padding: 0; }
 .media-hero {
     width: 100%;
-    height: 24vh;
-    max-height: 294px;
+    height: 24vh; /* -10% adicional respecto a 27vh */
+    max-height: 294px; /* -10% adicional respecto a 326px */
     background-image: url('../src/santiago.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center 205%;
-    background-attachment: fixed;
+    background-position: center 205%; /* bajar 15% adicional */
+    background-attachment: fixed; /* la foto permanece fija; el resto de la página se desplaza */
     position: relative;
     overflow: hidden;
+}
+
+/* Variante aniversario para la home (blanco y negro) */
+.media-hero--aniversario {
+    /* Imagen base para esta variante */
+    --hero-image: url('../src/aniversario2.jpg');
+    background-image: none;
+    /* mismo alto que el hero de Contacto */
+    height: 540px;
+    max-height: none;
+}
+
+/* Fondo difuminado en B/N para aniversario */
+.media-hero--aniversario::before {
+    content: "";
+    position: absolute;
+    /* expandimos para evitar bordes tras el blur */
+    inset: -12px;
+    background-image: var(--hero-image);
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    filter: grayscale(100%) blur(6px);
+    opacity: 0.75;
+    z-index: 0;
+}
+
+/* Capa central controlada por JS para simular fixed (ocupa 3/5, se recorta dentro del hero) */
+.media-hero--aniversario .media-hero__center {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 60%;
+    height: 100%;
+    transform: translate(-50%, 0);
+    background-image: var(--hero-image);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 100%;
+    filter: grayscale(100%);
+    z-index: 1;
+    pointer-events: none;
+    will-change: background-position;
 }
 
 /* Títulos con subrayado bajo el texto */
@@ -319,53 +345,108 @@ body.page-loaded .media-hero .media-hero-label {
 /* Reducir la altura general de la barra (anula utilidades bootstrap py-3) */
 header .row.align-items-center.py-3 { padding-top: 0.85rem !important; padding-bottom: 0.85rem !important; }
 
-/* Móvil: logo centrado arriba, nav debajo */
+/* Móvil: logo centrado y reducido, menú debajo */
 @media (max-width: 767.98px) {
-    /* Apilar header en columna */
+    /* Reestructurar header como columna */
     header .header-grid {
+        display: flex !important;
         flex-direction: column;
         align-items: center;
-        padding-top: 0.5rem !important;
-        padding-bottom: 0.25rem !important;
     }
-    header .header-left,
-    header .header-center {
-        flex: none;
+    header .header-left {
         width: auto;
-        max-width: none;
+        flex: none;
+        text-align: center;
     }
-    header .header-right {
-        display: none;
+    header .header-center {
+        width: 100%;
+        flex: none;
     }
-
-    /* Logo 25% más pequeño (85px → 64px) */
+    /* Logo 25% más pequeño */
     .logoNav {
-        max-height: 64px;
+        max-height: 63.75px; /* 85px × 0.75 */
     }
-
-    /* Nav: centrado horizontal con separación uniforme */
     .navbar .navbar-nav {
+        width: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         flex-wrap: nowrap;
-        gap: 1.5rem;
+        gap: 4%;
     }
-    .navbar .navbar-nav .nav-item { flex: 0 1 auto; }
+    .navbar .navbar-nav .nav-item { flex: 1 1 0; }
     .navbar .navbar-nav .nav-link {
         text-align: center;
-        padding: 0.15rem 0;
+        padding: 0.5rem 0;
         white-space: nowrap;
-        font-size: 1em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 1.1em;
+    }
+
+    /* Hero index: imagen directa en escala de grises, ancho completo sin recorte */
+    .media-hero--aniversario {
+        /* Aspect ratio de la imagen (~2.8:1 panorámica) para que el alto se ajuste al ancho */
+        height: 0;
+        padding-bottom: 35.7%; /* 1/2.8 ≈ 35.7% */
+        background-image: var(--hero-image);
+        background-size: 100% auto;
+        background-position: center center;
+        background-attachment: scroll;
+        filter: grayscale(100%);
+    }
+    .media-hero--aniversario::before {
+        display: none;
+    }
+    .media-hero--aniversario .media-hero__center {
+        display: none;
+    }
+    /* El label no debe heredar el grayscale del padre */
+    .media-hero--aniversario .media-hero-label {
+        filter: grayscale(0);
+    }
+
+    /* Hero media: santiago-movil recortada por abajo, mismo alto que index */
+    .media-hero:not(.media-hero--aniversario):not(.media-hero--nosotros) {
+        height: 0;
+        padding-bottom: 35.7%; /* misma proporción que el hero del index */
+        max-height: none;
+        padding-top: 0;
+        background: none;
+        background-attachment: scroll;
+        overflow: hidden;
+    }
+    .media-hero__mobile-img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    /* Hero contacto: mismo alto que index y media, imagen a ancho completo */
+    .media-hero.media-hero--nosotros {
+        height: 0;
+        padding-bottom: 35.7%; /* misma proporción que los otros heroes */
+        max-height: none;
+        background: none;
+        overflow: hidden;
+    }
+    .media-hero__mobile-img--nosotros {
+        display: block;
+        width: 100%;
+        height: auto;
+        /* Subir la imagen para centrar en las caras, recortando arriba y abajo */
+        margin-top: -10%;
     }
 }
 
-    /* Hero de Contacto */
+    /* Hero de Contacto (desktop) */
+@media (min-width: 768px) {
     .media-hero.media-hero--nosotros {
         height: 540px;
         max-height: none;
         background-image: url('../src/nosotros.jpg');
         background-position: 50% 40%;
     }
+}
 
 /* Footer */
 footer.site-footer {
