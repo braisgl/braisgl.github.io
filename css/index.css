@@ -474,8 +474,8 @@ header .row.align-items-center.py-3 { padding-top: 0.85rem !important; padding-b
     }
 }
 
-/* ===== TABLET (768px – 991.98px) ===== */
-@media (min-width: 768px) and (max-width: 991.98px) {
+/* ===== TABLET vertical + horizontal (768px – 1199.98px) ===== */
+@media (min-width: 768px) and (max-width: 1199.98px) {
     /* Header: logo centrado arriba, nav + RRSS + Dossier en la fila de abajo */
     header .header-grid {
         display: flex !important;
@@ -513,10 +513,61 @@ header .row.align-items-center.py-3 { padding-top: 0.85rem !important; padding-b
     header .header-center .navbar-nav {
         gap: 1.25rem;
     }
+
+    /* Hero index: imagen directa en escala de grises, ancho completo */
+    .media-hero--aniversario {
+        height: 0;
+        padding-bottom: 35.7%;
+        background-image: var(--hero-image);
+        background-size: 100% auto;
+        background-position: center center;
+        background-attachment: scroll;
+        filter: grayscale(100%);
+    }
+    .media-hero--aniversario::before {
+        display: none;
+    }
+    .media-hero--aniversario .media-hero__center {
+        display: none;
+    }
+    .media-hero--aniversario .media-hero-label {
+        filter: grayscale(0);
+    }
+
+    /* Hero media: santiago-movil a ancho completo */
+    .media-hero:not(.media-hero--aniversario):not(.media-hero--nosotros) {
+        height: 0;
+        padding-bottom: 35.7%;
+        max-height: none;
+        padding-top: 0;
+        background: none;
+        background-attachment: scroll;
+        overflow: hidden;
+    }
+    .media-hero__mobile-img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    /* Hero contacto: mismo alto que los otros héroes, imagen centrada en las caras */
+    .media-hero.media-hero--nosotros {
+        height: 0;
+        padding-bottom: 35.7%;
+        max-height: none;
+        background: none;
+        overflow: hidden;
+    }
+    .media-hero__mobile-img--nosotros {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin-top: -10%;
+    }
 }
 
     /* Hero de Contacto (desktop) */
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
     .media-hero.media-hero--nosotros {
         height: 540px;
         max-height: none;
