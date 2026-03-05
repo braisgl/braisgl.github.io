@@ -60,7 +60,7 @@
 
   function getExtraOffset(el) {
     var value = parseInt(el.getAttribute('data-extra-offset'), 10);
-    return isNaN(value) ? 0 : Math.max(0, value);
+    return isNaN(value) ? 0 : value;
   }
 
   function show(el) {

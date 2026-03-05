@@ -238,6 +238,9 @@ header .navbar-extra .btn-outline-light svg { margin-right: 0.35rem; }
 /* Imagen móvil del hero: oculta por defecto (desktop) */
 .media-hero__mobile-img { display: none; }
 
+/* Botón Dossier móvil: oculto en desktop */
+.dossier-mobile { display: none; }
+
 .media-hero-container { display: flex; justify-content: center; margin: 0; padding: 0; }
 .media-hero {
     width: 100%;
@@ -361,6 +364,31 @@ header .row.align-items-center.py-3 { padding-top: 0.85rem !important; padding-b
     header .header-center {
         width: 100%;
         flex: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    /* Nav se centra con margen derecho para compensar el botón dossier */
+    header .header-center .navbar {
+        flex: 1;
+        justify-content: center;
+    }
+    /* Botón Dossier visible en móvil */
+    .dossier-mobile {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        flex-shrink: 0;
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+        margin-left: 0.5rem;
+    }
+    .dossier-mobile svg {
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
     }
     /* Logo 25% más pequeño */
     .logoNav {
@@ -435,6 +463,49 @@ header .row.align-items-center.py-3 { padding-top: 0.85rem !important; padding-b
         height: auto;
         /* Subir la imagen para centrar en las caras, recortando arriba y abajo */
         margin-top: -10%;
+    }
+
+    /* Bloques de contenido: márgenes laterales 10%, fuente 15% menor, orden título→foto→texto */
+    .content-block {
+        flex-direction: column;
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+    .content-block__title { order: 1; width: 100%; }
+    .content-block__img   { order: 2; width: 100%; margin-top: 0.75rem; }
+    .content-block__text  { order: 3; width: 100%; margin-top: 0.75rem; }
+    .content-block__text .lead {
+        font-size: 0.85em; /* 15% menor */
+    }
+
+    /* Reducir espacio entre secciones de contenido */
+    main > section.py-5 {
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
+    }
+
+    /* Fotos del equipo 15% más grandes */
+    .band-member-card--compact .band-member-img {
+        width: 63.25%; /* 55% × 1.15 */
+    }
+
+    /* Pirámide: 1 arriba centrado, 2 abajo */
+    .band-pyramid {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .band-pyramid__top {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    /* Mismo tamaño de foto para los 3 */
+    .band-pyramid .band-member-img {
+        width: 100%;
+    }
+
+    /* Título del video principal en media: 15% menor */
+    #activeVideoTitle {
+        font-size: 0.85em;
     }
 }
 
