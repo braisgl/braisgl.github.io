@@ -455,6 +455,18 @@ header .row.align-items-center.py-3 { padding-top: 0.85rem !important; padding-b
         font-size: 0.85em; /* 15% menor */
     }
 
+    /* Icono dossier en nav móvil */
+    .dossier-icon {
+        display: inline-block;
+        vertical-align: -0.1em;
+        margin-right: 0.25em;
+        fill: none;
+        stroke: #fff;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
     /* Reducir espacio entre secciones de contenido */
     main > section.py-5 {
         padding-top: 1.5rem !important;
