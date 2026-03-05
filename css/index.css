@@ -443,10 +443,15 @@ header .row.align-items-center.py-3 { padding-top: 0.85rem !important; padding-b
         padding-left: 10%;
         padding-right: 10%;
     }
+    /* Desenvuelve el wrapper info para poder reordenar título y texto por separado */
+    .content-block__info {
+        display: contents;
+    }
     .content-block__title { order: 1; width: 100%; }
-    .content-block__img   { order: 2; width: 100%; margin-top: 0.75rem; }
+    .content-block__img   { order: 2; width: 100%; margin-top: 0.75rem; padding-left: 0; padding-right: 0; }
     .content-block__text  { order: 3; width: 100%; margin-top: 0.75rem; }
-    .content-block__text .lead {
+    .content-block__text,
+    .content-block .content-block__text.lead {
         font-size: 0.85em; /* 15% menor */
     }
 
