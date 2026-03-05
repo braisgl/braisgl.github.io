@@ -154,11 +154,6 @@ header{
 
 /* Formularios - colores legibles en fondo claro */
 .form-label { color: #212529; } /* Anula el color blanco heredado del body */
-.form-hint {
-    margin-top: 0.25rem;
-    font-size: 0.875rem; /* ~14px */
-    color: #6c757d; /* bootstrap secondary text */
-}
 .asterisk { color: #dc3545; }
 
 /* Navbar - el link activo un 15% más grande en todas las páginas */
@@ -457,18 +452,6 @@ header .row.align-items-center.py-3 { padding-top: 0.85rem !important; padding-b
         font-size: 0.85em; /* 15% menor */
     }
 
-    /* Icono dossier en nav móvil */
-    .dossier-icon {
-        display: inline-block;
-        vertical-align: -0.1em;
-        margin-right: 0.25em;
-        fill: none;
-        stroke: #fff;
-        stroke-width: 2;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-    }
-
     /* Reducir espacio entre secciones de contenido */
     main > section.py-5 {
         padding-top: 1.5rem !important;
@@ -488,6 +471,47 @@ header .row.align-items-center.py-3 { padding-top: 0.85rem !important; padding-b
     /* Mismo tamaño de foto para los 3 */
     .band-pyramid .band-member-img {
         width: 100%;
+    }
+}
+
+/* ===== TABLET (768px – 991.98px) ===== */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    /* Header: logo centrado arriba, nav + RRSS + Dossier en la fila de abajo */
+    header .header-grid {
+        display: flex !important;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: none !important;
+    }
+    header .header-left {
+        width: 100%;
+        display: flex !important;
+        justify-content: center;
+        justify-self: unset;
+    }
+    /* Center y right comparten la segunda fila, en línea */
+    header .header-center {
+        flex: 0 1 auto;
+        justify-self: unset;
+        width: auto;
+        max-width: none;
+    }
+    header .header-right {
+        flex: 0 0 auto;
+        justify-self: unset;
+        display: flex !important;
+        align-items: center;
+    }
+    header .navbar-extra {
+        margin-left: 0;
+        padding-left: 1rem;
+    }
+    header .navbar-extra .ml-3 {
+        margin-left: 0.75rem !important;
+    }
+    header .header-center .navbar-nav {
+        gap: 1.25rem;
     }
 }
 
