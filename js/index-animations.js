@@ -123,7 +123,7 @@
   }
 
   function init() {
-  var elements = Array.prototype.slice.call(document.querySelectorAll('.fade-in-up, .fade-in-left-scroll'));
+  var elements = Array.prototype.slice.call(document.querySelectorAll('.fade-in-up, .fade-in-left-scroll, .fade-in-right'));
     if (!elements.length) return;
 
     if (reduceMotion) {
