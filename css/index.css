@@ -5,9 +5,11 @@
 }
 html{
     font-family: 'Montserrat-Semibold', sans-serif;
+    overflow-x: hidden;
 }
 body{
     color: white;
+    overflow-x: hidden;
 }
 @keyframes fadeInLeft {
     to {
