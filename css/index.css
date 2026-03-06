@@ -359,9 +359,11 @@ header .row.align-items-center.py-3 { padding-top: 0.85rem !important; padding-b
         width: 100%;
         flex: none;
     }
-    /* Logo 25% más pequeño */
+    /* Logo 46% más pequeño que desktop */
     .logoNav {
-        max-height: 63.75px; /* 85px × 0.75 */
+        max-height: 45.9px; /* 51px × 0.90 */
+        margin-top: 5px;
+        margin-bottom: 5px;
     }
     .navbar .navbar-nav {
         width: 100%;
@@ -373,11 +375,15 @@ header .row.align-items-center.py-3 { padding-top: 0.85rem !important; padding-b
     .navbar .navbar-nav .nav-item { flex: 1 1 0; }
     .navbar .navbar-nav .nav-link {
         text-align: center;
-        padding: 0.5rem 0;
+        padding: 0.15rem 0;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         font-size: 1.1em;
+    }
+    header .row.py-3.header-grid {
+        padding-top: 0.25rem !important;
+        padding-bottom: 0.1rem !important;
     }
 
     /* Hero index: imagen directa en escala de grises, ancho completo sin recorte */
@@ -471,6 +477,11 @@ header .row.align-items-center.py-3 { padding-top: 0.85rem !important; padding-b
     /* Mismo tamaño de foto para los 3 */
     .band-pyramid .band-member-img {
         width: 100%;
+    }
+
+    /* Título del vídeo principal: mismo tamaño que los card-title (h5) */
+    .active-video-section #activeVideoTitle {
+        font-size: 1.25rem;
     }
 }
 
