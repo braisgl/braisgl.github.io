@@ -325,6 +325,30 @@ body.page-loaded .media-hero .media-hero-label {
 .video-list-section .card-body { background: transparent !important; }
 .video-list-section .card-title { color: #141414 !important; }
 
+/* Music section: mismo tratamiento visual que video-list-section */
+.music-list-section .card {
+    background: transparent !important;
+    border: none !important;
+    margin: 2% 10%;
+    border-radius: 0;
+    overflow: visible;
+    box-shadow: none !important;
+}
+.music-list-section .card-body { background: transparent !important; padding: 0; }
+.music-list-section .card-title { color: #141414 !important; font-size: 1.25em; }
+.music-list-section .card-text { margin-bottom: 0.75rem; }
+
+/* Wrapper del iframe de Spotify embebido */
+.music-embed {
+    border-radius: 0.75rem;
+    overflow: hidden;
+}
+.music-embed iframe {
+    display: block;
+    width: 100%;
+    border: 0;
+}
+
 /* Uniform crop for La banda portraits */
 .band-member-img {
     width: 70%;
@@ -409,7 +433,7 @@ header .row.align-items-center.py-3 { padding-top: 0.85rem !important; padding-b
     }
 
     /* Hero media: santiago-movil recortada por abajo, mismo alto que index */
-    .media-hero:not(.media-hero--aniversario):not(.media-hero--nosotros) {
+    .media-hero:not(.media-hero--aniversario):not(.media-hero--nosotros):not(.media-hero--musica) {
         height: 0;
         padding-bottom: 35.7%; /* misma proporción que el hero del index */
         max-height: none;
@@ -438,6 +462,20 @@ header .row.align-items-center.py-3 { padding-top: 0.85rem !important; padding-b
         height: auto;
         /* Subir la imagen para centrar en las caras, recortando arriba y abajo */
         margin-top: -10%;
+    }
+
+    /* Hero música: mismo alto que los otros heroes, imagen de Cormes a ancho completo */
+    .media-hero.media-hero--musica {
+        height: 0;
+        padding-bottom: 35.7%; /* misma proporción que los otros heroes */
+        max-height: none;
+        background: none;
+        overflow: hidden;
+    }
+    .media-hero__mobile-img--musica {
+        display: block;
+        width: 100%;
+        height: auto;
     }
 
     /* Bloques de contenido: márgenes laterales 10%, fuente 15% menor, orden título→foto→texto */
@@ -546,7 +584,7 @@ header .row.align-items-center.py-3 { padding-top: 0.85rem !important; padding-b
     }
 
     /* Hero media: santiago-movil a ancho completo */
-    .media-hero:not(.media-hero--aniversario):not(.media-hero--nosotros) {
+    .media-hero:not(.media-hero--aniversario):not(.media-hero--nosotros):not(.media-hero--musica) {
         height: 0;
         padding-bottom: 35.7%;
         max-height: none;
@@ -575,6 +613,20 @@ header .row.align-items-center.py-3 { padding-top: 0.85rem !important; padding-b
         height: auto;
         margin-top: -10%;
     }
+
+    /* Hero música: mismo alto que los otros héroes, imagen de Cormes a ancho completo */
+    .media-hero.media-hero--musica {
+        height: 0;
+        padding-bottom: 35.7%;
+        max-height: none;
+        background: none;
+        overflow: hidden;
+    }
+    .media-hero__mobile-img--musica {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
 }
 
     /* Hero de Contacto (desktop) */
@@ -584,6 +636,15 @@ header .row.align-items-center.py-3 { padding-top: 0.85rem !important; padding-b
         max-height: none;
         background-image: url('../src/nosotros.jpg');
         background-position: 50% 40%;
+    }
+
+    /* Hero de Música (desktop) */
+    .media-hero.media-hero--musica {
+        height: 540px;
+        max-height: none;
+        background-image: url('../src/cormes-hero.jpg');
+        background-position: center center;
+        background-attachment: scroll;
     }
 }
 

@@ -3,13 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Daydream Sessions - Vídeos" />
-    <title>Vídeo | Daydream Sessions</title>
+    <meta name="description" content="Daydream Sessions - Música" />
+    <title>Música | Daydream Sessions</title>
 
     <!-- CSS -->
   <!-- Bootstrap 4.4.1 (CDN, minified) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
     <link rel="stylesheet" href="../css/index.css" />
+
+    <!-- Favicons -->
     <link rel="icon" href="../src/logo16.png" sizes="16x16" type="image/png" />
     <link rel="icon" href="../src/logo32.png" sizes="32x32" type="image/png" />
     <link rel="icon" href="../src/logo64.png" sizes="64x64" type="image/png" />
@@ -30,10 +32,10 @@
                   <a class="nav-link" href="../index.html"><span class="nav-text">Nosotros</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="media.html"><span class="nav-text">Video</span></a>
+                  <a class="nav-link" href="media.html"><span class="nav-text">Video</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="musica.html"><span class="nav-text">Música</span></a>
+                  <a class="nav-link active" aria-current="page" href="musica.html"><span class="nav-text">Música</span></a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="contacto.html"><span class="nav-text">Contacto</span></a>
@@ -59,13 +61,13 @@
                   </svg>
                 </a>
                 <a href="https://open.spotify.com/playlist/2B3Dz8tAwPMGMLA4QkN8Lq?si=e5c06789f9bf4095" target="_blank" rel="noopener" aria-label="Spotify" title="Spotify">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <path d="M7 9c3-1 7-.5 10 1"></path>
-                      <path d="M7 12.5c3-1 6-.5 8.5 1"></path>
-                      <path d="M7 16c2.5-1 5-.5 7 .5"></path>
-                    </svg>
-                  </a>
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M7 9c3-1 7-.5 10 1"></path>
+                    <path d="M7 12.5c3-1 6-.5 8.5 1"></path>
+                    <path d="M7 16c2.5-1 5-.5 7 .5"></path>
+                  </svg>
+                </a>
                 <a href="https://www.instagram.com/daydreamsessions/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <rect x="3" y="3" width="18" height="18" rx="5"></rect>
@@ -86,39 +88,25 @@
         </div>
       </div>
     </header>
-    <!-- Hero intermedio con foto de Santiago y rótulo VIDEO -->
+
+    <!-- Hero con foto de Cormes, sin márgenes -->
     <section class="media-hero-container">
-      <div class="media-hero">
-        <img src="../src/santiago-movil.jpg" alt="" class="media-hero__mobile-img" />
-        <div class="media-hero-label">VIDEO</div>
-      </div>
-    </section>
-    <main>
-    <section class="active-video-section py-4">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-12">
-            <div class="embed-responsive embed-responsive-16by9">
-              <iframe class="embed-responsive-item" id="activeVideoFrame" src="about:blank" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen title="Reproductor Daydream Sessions"></iframe>
-            </div>
-            <div class="text-center mt-4">
-              <h1 id="activeVideoTitle" class="h2">Video seleccionado</h1>
-              <a id="openOnYouTube" class="btn btn-outline-light btn-sm mt-2" href="https://www.youtube.com/watch?v=pKEuPaKHNag" target="_blank" rel="noopener">Abrir en YouTube</a>
-              <div id="playerFallbackNote" class="small text-secondary mt-2 d-none">Si el reproductor no carga, usa el enlace.</div>
-            </div>
-          </div>
-        </div>
+      <div class="media-hero media-hero--musica">
+        <img src="../src/cormes-hero.jpg" alt="" class="media-hero__mobile-img media-hero__mobile-img--musica" />
+        <div class="media-hero-label">MÚSICA</div>
       </div>
     </section>
 
-    <section class="video-list-section pb-5">
-      <div class="container">
-        <div id="videoGrid" class="row g-4 justify-content-between">
-          <!-- Cards generadas por JS en dos columnas (md: 6 / col) -->
+    <main>
+      <section class="music-list-section py-5">
+        <div class="container">
+          <div id="musicGrid" class="row g-4 justify-content-between">
+            <!-- Tarjetas cargadas por JS en dos columnas (md: 6 / col) -->
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
     </main>
+
   <footer class="site-footer py-4">
       <div class="container text-center">
         <div class="social-icons mb-2">
@@ -153,26 +141,13 @@
         <div class="small mt-1">&copy; Daydream Sessions. Todos los derechos reservados.</div>
       </div>
     </footer>
-    <!-- YouTube API config con apiKey + channelId (repo) -->
-    <script defer src="../js/config.youtube.js"></script>
-    <!-- Cargar override local solo en entorno local para evitar 404 en Pages -->
-    <script>
-      (function(){
-        var host = location.hostname;
-        var isLocal = host === 'localhost' || host === '127.0.0.1' || location.protocol === 'file:';
-        if (isLocal) {
-          var s = document.createElement('script');
-          s.src = '../js/config.youtube.local.js';
-          s.defer = true;
-          document.currentScript.parentNode.insertBefore(s, document.currentScript.nextSibling);
-        }
-      })();
-    </script>
+
+    <!-- JS -->
   <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
   <script defer src="../js/page-ready.js"></script>
   <script defer src="../js/sticky-header.js"></script>
-    <script defer src="../js/media.js"></script>
-    <!-- Bootstrap Bundle (CDN, minified) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+  <script defer src="../js/music.js"></script>
+      <!-- Bootstrap Bundle (CDN, minified) -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
   </body>
-  </html>
+</html>

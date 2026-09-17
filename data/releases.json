@@ -1,0 +1,23 @@
+[
+  {
+    "id": "3RVP2iCIytpmXoKbWAOCrs",
+    "name": "Daydream",
+    "type": "single",
+    "release_date": "2026-07-03",
+    "release_date_precision": "day"
+  },
+  {
+    "id": "1jytiYTdLdgQfZR31kOkFu",
+    "name": "Mom",
+    "type": "single",
+    "release_date": "2026-08-07",
+    "release_date_precision": "day"
+  },
+  {
+    "id": "3RLzUFiOvpYgWcSeP4UPLO",
+    "name": "Parks & Recreations",
+    "type": "single",
+    "release_date": "2026-09-04",
+    "release_date_precision": "day"
+  }
+]
