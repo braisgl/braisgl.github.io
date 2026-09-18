@@ -335,7 +335,9 @@ body.page-loaded .media-hero .media-hero-label {
     box-shadow: none !important;
 }
 .music-list-section .card-body { background: transparent !important; padding: 0; }
-.music-list-section .card-title { color: #141414 !important; font-size: 1.25em; }
+.music-list-section .card-title { color: #141414 !important; }
+.music-list-section .card-title a { display: inline-block; font-size: 1.5625em; color: #141414 !important; transition: opacity 0.2s ease; }
+.music-list-section .card-title a:hover { opacity: 0.7; }
 .music-list-section .card-text { margin-bottom: 0.75rem; }
 
 /* Wrapper del iframe de Spotify embebido */
